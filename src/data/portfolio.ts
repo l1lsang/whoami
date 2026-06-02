@@ -27,9 +27,9 @@ export const profile = {
   headline: '웹으로 데이터를 보여주고, 임베디드로 현실을 움직이는 개발자',
   subheadline:
     '안녕하세요. 웹 서비스와 임베디드 시스템을 함께 공부하며, 현실의 데이터를 사용자 경험으로 연결하는 개발자를 목표로 성장하고 있습니다.',
-  githubUrl: 'https://github.com/your-github-id', // TODO: 실제 GitHub 주소로 수정하세요.
-  emailUrl: 'mailto:your-email@example.com', // TODO: 실제 이메일 주소로 수정하세요.
-  blogUrl: 'https://your-blog.example.com', // TODO: 실제 블로그 주소로 수정하세요.
+  githubUrl: 'https://github.com/l1lsang', // TODO: 실제 GitHub 주소로 수정하세요.
+  emailUrl: 'jkm0831123@gmail.com', // TODO: 실제 이메일 주소로 수정하세요.
+  blogUrl: 'https://velog.io/@jkm0831/posts', // TODO: 실제 블로그 주소로 수정하세요.
 }
 
 export const aboutParagraphs = [
@@ -71,14 +71,6 @@ export const projects: Project[] = [
     ],
     githubUrl: '', // TODO: 실제 GitHub 저장소 링크를 추가하세요.
     demoUrl: '', // TODO: 실제 배포 링크를 추가하세요.
-  },
-  {
-    name: 'LawHero',
-    description: '법률 상담 모바일 앱',
-    techStack: ['Expo', 'React Native', 'Firebase', 'Cloud Functions'],
-    features: ['Firebase Auth', '채팅 시스템', '푸시 알림', '본인인증 연동'],
-    githubUrl: '', // TODO: 실제 GitHub 저장소 링크를 추가하세요.
-    demoUrl: '', // TODO: 실제 데모 또는 소개 링크를 추가하세요.
   },
   {
     name: 'IoT Sensor Dashboard',
