@@ -56,8 +56,9 @@ export function ContactSection() {
               {portfolioConfig.resumePath ? (
                 <a
                   href={portfolioConfig.resumePath}
-                  download
-                  className="flex min-h-14 items-center justify-center gap-2 border border-white/12 px-5 text-sm font-medium text-ink transition hover:border-white/30 hover:bg-white/[0.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-web"
+                  download={portfolioConfig.resumeFilename}
+                  className="flex min-h-14 items-center justify-center gap-2 bg-web px-5 text-sm font-bold text-canvas shadow-[0_0_28px_rgba(69,214,168,0.14)] transition hover:bg-[#6ee5bd] hover:shadow-[0_0_36px_rgba(69,214,168,0.24)] focus:outline-none focus-visible:ring-2 focus-visible:ring-web focus-visible:ring-offset-2 focus-visible:ring-offset-panel"
+                  aria-label={`${portfolioConfig.name} 이력서 PDF 다운로드`}
                 >
                   <Download aria-hidden="true" size={17} /> 이력서 다운로드
                 </a>

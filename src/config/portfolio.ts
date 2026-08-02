@@ -7,10 +7,10 @@ export type NavigationItem = {
 export const portfolioConfig = {
   name: '장경민',
   role: 'Unity & Web Developer',
-  email: 'jkm0831123@gmail.com',
+  email: 'your-email@example.com',
   githubUrl: 'https://github.com/l1lsang',
-  // 이력서 파일을 public/resume.pdf에 추가한 뒤 '/resume.pdf'로 변경하세요.
-  resumePath: '',
+  resumePath: '/resume-jang-gyeongmin.pdf',
+  resumeFilename: '장경민_풀스택_개발자_이력서.pdf',
   navigation: [
     { label: 'Home', href: '/#home', sectionId: 'home' },
     { label: 'About', href: '/#about', sectionId: 'about' },

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Code2, Menu, X } from 'lucide-react'
+import { Code2, Download, Menu, X } from 'lucide-react'
 import { portfolioConfig } from '../../config/portfolio'
 import { GitHubIcon } from '../ui/GitHubIcon'
 import { InternalLink } from '../ui/InternalLink'
@@ -110,14 +110,13 @@ export function Header({ currentPath }: HeaderProps) {
           </ul>
           <span className="mx-2 h-5 w-px bg-white/10" aria-hidden="true" />
           <a
-            href={portfolioConfig.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex h-10 items-center gap-2 border border-white/12 bg-white/[0.03] px-4 text-sm font-medium text-ink transition hover:border-white/25 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-web"
-            aria-label={`${portfolioConfig.name} GitHub 새 창에서 열기`}
+            href={portfolioConfig.resumePath}
+            download={portfolioConfig.resumeFilename}
+            className="inline-flex h-10 items-center gap-2 bg-web px-4 text-sm font-bold text-canvas shadow-[0_0_24px_rgba(69,214,168,0.16)] transition hover:bg-[#6ee5bd] focus:outline-none focus-visible:ring-2 focus-visible:ring-web focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+            aria-label={`${portfolioConfig.name} 이력서 PDF 다운로드`}
           >
-            <GitHubIcon aria-hidden="true" size={17} />
-            GitHub
+            <Download aria-hidden="true" size={17} />
+            이력서
           </a>
         </div>
 
@@ -153,16 +152,27 @@ export function Header({ currentPath }: HeaderProps) {
               </li>
             ))}
           </ul>
-          <a
-            href={portfolioConfig.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-3 flex min-h-12 items-center justify-center gap-2 bg-ink px-4 text-sm font-semibold text-canvas focus:outline-none focus-visible:ring-2 focus-visible:ring-web"
-            aria-label={`${portfolioConfig.name} GitHub 새 창에서 열기`}
-          >
-            <GitHubIcon aria-hidden="true" size={17} />
-            GitHub 방문
-          </a>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <a
+              href={portfolioConfig.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="flex min-h-12 items-center justify-center gap-2 border border-white/12 bg-white/[0.03] px-4 text-sm font-semibold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-web"
+              aria-label={`${portfolioConfig.name} GitHub 새 창에서 열기`}
+            >
+              <GitHubIcon aria-hidden="true" size={17} />
+              GitHub
+            </a>
+            <a
+              href={portfolioConfig.resumePath}
+              download={portfolioConfig.resumeFilename}
+              className="flex min-h-12 items-center justify-center gap-2 bg-web px-4 text-sm font-bold text-canvas shadow-[0_0_24px_rgba(69,214,168,0.16)] focus:outline-none focus-visible:ring-2 focus-visible:ring-web"
+              aria-label={`${portfolioConfig.name} 이력서 PDF 다운로드`}
+            >
+              <Download aria-hidden="true" size={17} />
+              이력서
+            </a>
+          </div>
         </div>
       ) : null}
     </header>

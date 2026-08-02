@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight } from 'lucide-react'
+import { ArrowDown, ArrowRight, Download } from 'lucide-react'
 import { portfolioConfig } from '../../config/portfolio'
 import { GitHubIcon } from '../ui/GitHubIcon'
 import { InternalLink } from '../ui/InternalLink'
@@ -31,10 +31,19 @@ export function HeroSection() {
             Unity와 C#으로 인터랙티브 콘텐츠를 개발하고,
             <br className="hidden sm:block" /> React와 Firebase를 활용해 실제 사용 가능한 웹 서비스를 구현합니다.
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href={portfolioConfig.resumePath}
+              download={portfolioConfig.resumeFilename}
+              className="group inline-flex min-h-12 items-center justify-center gap-2 bg-web px-6 text-sm font-bold text-canvas shadow-[0_0_28px_rgba(69,214,168,0.18)] transition hover:bg-[#6ee5bd] hover:shadow-[0_0_36px_rgba(69,214,168,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-web focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+              aria-label="장경민 이력서 PDF 다운로드"
+            >
+              <Download aria-hidden="true" size={17} className="transition-transform group-hover:translate-y-0.5" />
+              이력서 다운로드
+            </a>
             <InternalLink
               href="/#projects"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 bg-ink px-6 text-sm font-semibold text-canvas transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-web focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+              className="group inline-flex min-h-12 items-center justify-center gap-2 border border-white/15 bg-white/[0.025] px-6 text-sm font-semibold text-ink transition hover:border-white/30 hover:bg-white/[0.05] focus:outline-none focus-visible:ring-2 focus-visible:ring-web focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
             >
               프로젝트 보기
               <ArrowRight aria-hidden="true" size={17} className="transition-transform group-hover:translate-x-1" />
@@ -43,7 +52,7 @@ export function HeroSection() {
               href={portfolioConfig.githubUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-12 items-center justify-center gap-2 border border-white/15 bg-white/[0.025] px-6 text-sm font-semibold text-ink transition hover:border-white/30 hover:bg-white/[0.05] focus:outline-none focus-visible:ring-2 focus-visible:ring-web"
+              className="inline-flex min-h-12 items-center justify-center gap-2 px-4 text-sm font-semibold text-muted transition hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-web"
               aria-label={`${portfolioConfig.name} GitHub 새 창에서 열기`}
             >
               <GitHubIcon aria-hidden="true" size={17} />
