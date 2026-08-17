@@ -7,7 +7,7 @@ export type NavigationItem = {
 export const portfolioConfig = {
   name: '장경민',
   role: 'Unity & Web Developer',
-  email: 'your-email@example.com',
+  email: 'jkm0831123@gmail.com',
   githubUrl: 'https://github.com/l1lsang',
   resumePath: '/resume-jang-gyeongmin.pdf',
   resumeFilename: '장경민_풀스택_개발자_이력서.pdf',
