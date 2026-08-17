@@ -17,11 +17,11 @@ export function SectionHeading({
 
   return (
     <div className={alignment}>
-      <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-web">{eyebrow}</p>
-      <h2 id={titleId} className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.03em] text-ink sm:text-4xl lg:text-5xl">
+      <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-web">{eyebrow}</p>
+      <h2 id={titleId} className="mt-4 font-display text-4xl font-medium leading-[1.12] tracking-[-0.04em] text-ink sm:text-5xl lg:text-6xl">
         {title}
       </h2>
-      {description ? <p className="mt-5 text-base leading-8 text-muted sm:text-lg">{description}</p> : null}
+      {description ? <p className="mt-6 max-w-2xl text-base leading-8 text-muted">{description}</p> : null}
     </div>
   )
 }

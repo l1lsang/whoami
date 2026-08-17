@@ -1,26 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: #0b0d12;
-  --color-surface: #10141c;
-  --color-panel: #151922;
-  --color-ink: #f4f6fa;
-  --color-muted: #9da7b8;
-  --color-unity: #8b7cff;
-  --color-web: #45d6a8;
+  --color-canvas: #f3f1ea;
+  --color-surface: #e8e5dc;
+  --color-panel: #fbfaf6;
+  --color-ink: #191c18;
+  --color-muted: #696d66;
+  --color-web: #1f513f;
+  --color-unity: #d45234;
   --font-sans: Pretendard, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Iowan Old Style", "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 :root {
-  color: #f4f6fa;
-  background: #0b0d12;
+  color: #191c18;
+  background: #f3f1ea;
   font-family: var(--font-sans);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * {
@@ -29,8 +30,8 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 72px;
-  background: #0b0d12;
+  scroll-padding-top: 64px;
+  background: #f3f1ea;
 }
 
 body {
@@ -38,7 +39,9 @@ body {
   min-height: 100svh;
   margin: 0;
   overflow-x: hidden;
-  background: #0b0d12;
+  background: #f3f1ea;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 button,
@@ -55,65 +58,37 @@ a {
 }
 
 ::selection {
-  color: #0b0d12;
-  background: #45d6a8;
+  color: #fbfaf6;
+  background: #1f513f;
 }
 
 .visual-grid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(25, 28, 24, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(25, 28, 24, 0.08) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .map-grid {
   background-image:
-    linear-gradient(32deg, transparent 42%, rgba(69, 214, 168, 0.12) 43%, rgba(69, 214, 168, 0.12) 45%, transparent 46%),
-    linear-gradient(112deg, transparent 37%, rgba(255, 255, 255, 0.055) 38%, rgba(255, 255, 255, 0.055) 40%, transparent 41%),
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 160px 130px, 140px 170px, 30px 30px, 30px 30px;
+    linear-gradient(32deg, transparent 44%, rgba(31, 81, 63, 0.16) 45%, rgba(31, 81, 63, 0.16) 46%, transparent 47%),
+    linear-gradient(112deg, transparent 38%, rgba(25, 28, 24, 0.08) 39%, rgba(25, 28, 24, 0.08) 40%, transparent 41%),
+    linear-gradient(rgba(25, 28, 24, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(25, 28, 24, 0.05) 1px, transparent 1px);
+  background-size: 160px 128px, 144px 168px, 32px 32px, 32px 32px;
 }
 
 .reveal-section {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(8px);
   transition:
-    opacity 560ms ease,
-    transform 560ms ease;
+    opacity 240ms ease,
+    transform 240ms ease;
 }
 
 .reveal-section.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-.hero-drift {
-  animation: hero-drift 8s ease-in-out infinite;
-}
-
-.hero-drift-delay {
-  animation: hero-drift-delay 9s ease-in-out infinite;
-}
-
-@keyframes hero-drift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -7px, 0);
-  }
-}
-
-@keyframes hero-drift-delay {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, 6px, 0);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

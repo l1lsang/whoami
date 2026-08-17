@@ -6,72 +6,76 @@ import { HeroVisual } from './HeroVisual'
 
 export function HeroSection() {
   return (
-    <section id="home" aria-labelledby="hero-title" className="relative overflow-hidden border-b border-white/8 bg-canvas pt-[72px]">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-0 top-0 h-full w-px bg-white/[0.04] lg:left-[7%]" />
-        <div className="absolute right-0 top-0 h-full w-px bg-white/[0.04] lg:right-[7%]" />
-        <div className="absolute left-[7%] top-[24%] size-1 bg-unity/80" />
-        <div className="absolute bottom-[18%] right-[7%] size-1 bg-web/80" />
-      </div>
+    <section id="home" aria-labelledby="hero-title" className="border-b border-ink/20 bg-canvas pt-16">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-8 sm:py-16 lg:py-20">
+        <div className="grid grid-cols-4 gap-x-4 sm:grid-cols-8 lg:grid-cols-12">
+          <div className="col-span-full flex items-center justify-between border-t border-ink/20 pt-4">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-web">01 / Portfolio</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">{portfolioConfig.role}</p>
+          </div>
 
-      <div className="relative mx-auto grid min-h-[calc(100svh-72px)] max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[0.92fr_1.08fr] lg:gap-8 lg:py-24">
-        <div className="relative z-10 max-w-3xl">
-          <p className="inline-flex items-center gap-2 border border-white/10 bg-white/[0.025] px-3 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-muted">
-            <span className="size-1.5 rounded-full bg-gradient-to-r from-unity to-web" aria-hidden="true" />
-            {portfolioConfig.role}
-          </p>
-          <h1 id="hero-title" className="mt-7 text-[clamp(2rem,6vw,5.4rem)] font-semibold leading-[1.08] tracking-[-0.055em] text-ink">
+          <h1
+            id="hero-title"
+            className="col-span-full mt-12 max-w-5xl font-display text-[clamp(2.75rem,6vw,5.25rem)] font-medium leading-[0.96] tracking-[-0.06em] text-ink lg:col-span-9"
+          >
             게임과 웹을 넘나들며
             <br />
-            사용자가 직접 <span className="text-unity">경험</span>하는
+            사용자가 직접 <span className="inline-block whitespace-nowrap"><span className="text-unity">경험</span>하는</span>
             <br />
             서비스를 만듭니다.
           </h1>
-          <p className="mt-7 max-w-2xl text-base leading-8 text-muted sm:text-lg">
-            Unity와 C#으로 인터랙티브 콘텐츠를 개발하고,
-            <br className="hidden sm:block" /> React와 Firebase를 활용해 실제 사용 가능한 웹 서비스를 구현합니다.
-          </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a
-              href={portfolioConfig.resumePath}
-              download={portfolioConfig.resumeFilename}
-              className="group inline-flex min-h-12 items-center justify-center gap-2 bg-web px-6 text-sm font-bold text-canvas shadow-[0_0_28px_rgba(69,214,168,0.18)] transition hover:bg-[#6ee5bd] hover:shadow-[0_0_36px_rgba(69,214,168,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-web focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-              aria-label="장경민 이력서 PDF 다운로드"
-            >
-              <Download aria-hidden="true" size={17} className="transition-transform group-hover:translate-y-0.5" />
-              이력서 다운로드
-            </a>
-            <InternalLink
-              href="/#projects"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 border border-white/15 bg-white/[0.025] px-6 text-sm font-semibold text-ink transition hover:border-white/30 hover:bg-white/[0.05] focus:outline-none focus-visible:ring-2 focus-visible:ring-web focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-            >
-              프로젝트 보기
-              <ArrowRight aria-hidden="true" size={17} className="transition-transform group-hover:translate-x-1" />
-            </InternalLink>
+
+          <div className="col-span-4 col-start-1 mt-10 sm:col-span-5 sm:col-start-4 lg:col-span-3 lg:col-start-10 lg:mt-16 lg:self-end">
+            <p className="text-base leading-8 text-muted">
+              Unity와 C#으로 인터랙티브 콘텐츠를 개발하고, React와 Firebase로 실제 사용 가능한 웹 서비스를 구현합니다.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <a
+                href={portfolioConfig.resumePath}
+                download={portfolioConfig.resumeFilename}
+                className="group inline-flex min-h-12 items-center gap-2 bg-ink px-5 text-sm font-semibold text-panel transition-colors duration-200 hover:bg-web focus:outline-none focus-visible:ring-2 focus-visible:ring-unity focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+                aria-label="장경민 이력서 PDF 다운로드"
+              >
+                <Download aria-hidden="true" size={16} />
+                이력서 다운로드
+              </a>
+              <InternalLink
+                href="/#projects"
+                className="group inline-flex min-h-12 items-center gap-2 border-b border-ink/30 text-sm font-semibold text-ink transition-colors duration-200 hover:border-web hover:text-web focus:outline-none focus-visible:ring-2 focus-visible:ring-web"
+              >
+                프로젝트 보기
+                <ArrowRight aria-hidden="true" size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+              </InternalLink>
+            </div>
+          </div>
+
+          <div className="col-span-3 col-start-1 mt-16 hidden self-end lg:block">
+            <p className="max-w-xs border-l border-web pl-4 text-sm leading-7 text-muted">
+              기획에서 배포까지, 아이디어를 사용자가 클릭하고 움직일 수 있는 결과물로 완성합니다.
+            </p>
             <a
               href={portfolioConfig.githubUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-12 items-center justify-center gap-2 px-4 text-sm font-semibold text-muted transition hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-web"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors duration-200 hover:text-web focus:outline-none focus-visible:ring-2 focus-visible:ring-web"
               aria-label={`${portfolioConfig.name} GitHub 새 창에서 열기`}
             >
-              <GitHubIcon aria-hidden="true" size={17} />
+              <GitHubIcon aria-hidden="true" size={16} />
               GitHub 방문
             </a>
           </div>
-          <p className="mt-10 max-w-lg border-l border-web/50 pl-4 text-sm leading-6 text-muted">
-            기획에서 배포까지, 아이디어를 사용자가 클릭하고 움직일 수 있는 결과물로 완성합니다.
-          </p>
+
+          <div className="col-span-full mt-12 lg:col-span-9 lg:col-start-4 lg:mt-16">
+            <HeroVisual />
+          </div>
+
+          <InternalLink
+            href="/#about"
+            className="col-span-full mt-8 inline-flex w-fit items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted transition-colors duration-200 hover:text-web focus:outline-none focus-visible:ring-2 focus-visible:ring-web lg:col-start-4"
+          >
+            Scroll to explore <ArrowDown aria-hidden="true" size={16} />
+          </InternalLink>
         </div>
-
-        <HeroVisual />
-
-        <InternalLink
-          href="/#about"
-          className="absolute bottom-7 left-5 hidden items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted transition hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-web lg:flex"
-        >
-          Scroll to explore <ArrowDown aria-hidden="true" size={13} />
-        </InternalLink>
       </div>
     </section>
   )

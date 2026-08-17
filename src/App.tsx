@@ -60,7 +60,7 @@ function App() {
     page = <HomePage />
   } else if (project) {
     page = (
-      <Suspense fallback={<main className="min-h-screen bg-canvas pt-[72px]" aria-label="프로젝트 불러오는 중" />}>
+      <Suspense fallback={<main className="min-h-screen bg-canvas pt-16" aria-label="프로젝트 불러오는 중" />}>
         <ProjectDetailPage project={project} />
       </Suspense>
     )
