@@ -9,9 +9,9 @@ export function Reveal({ children, className = '', delay = 0 }: RevealProps) {
     if (!element) return
     const observer = new IntersectionObserver(
       ([entry]) => {
+        element.dataset.inView = String(entry.isIntersecting)
         if (entry.isIntersecting) {
           element.classList.add('is-visible')
-          observer.unobserve(element)
         }
       },
       { threshold: 0, rootMargin: '0px 0px -35px 0px' },

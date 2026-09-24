@@ -1,6 +1,7 @@
 ﻿import { ArrowDown, ArrowDownRight, ArrowUpRight, Download } from 'lucide-react'
 import { portfolioConfig } from '../../config/portfolio'
 import { InternalLink } from '../ui/InternalLink'
+import { Magnetic } from '../ui/Magnetic'
 import { HeroVisual } from './HeroVisual'
 
 export function HeroSection() {
@@ -16,36 +17,48 @@ export function HeroSection() {
           <span className="status-dot" /> FRONTEND DEVELOPER
         </p>
         <h1 id="hero-title" className="hero-name hero-enter">
-          장경민<span className="name-period">.</span>
+          <span className="hero-name-text">장경민</span>
+          <span className="name-period">.</span>
         </h1>
         <p className="hero-statement hero-enter">
-          사용자의 경험을 고민하고,
-          <br />
-          아이디어를 실제 서비스로
-          <br />
-          구현하는 프론트엔드 개발자.
+          <span className="statement-line">
+            <span>사용자의 경험을 고민하고,</span>
+          </span>
+          <span className="statement-line">
+            <span>아이디어를 실제 서비스로</span>
+          </span>
+          <span className="statement-line">
+            <span>구현하는 프론트엔드 개발자.</span>
+          </span>
         </p>
         <div className="hero-links hero-enter">
-          <a
-            className="text-link"
-            href={portfolioConfig.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub <ArrowUpRight size={15} />
-          </a>
-          <InternalLink className="text-link" href="/#projects">
-            Projects <ArrowDown size={15} />
-          </InternalLink>
-          <InternalLink className="text-link" href="/#contact">
-            Contact <ArrowUpRight size={15} />
-          </InternalLink>
+          <Magnetic>
+            <a
+              className="text-link"
+              href={portfolioConfig.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub <ArrowUpRight size={15} />
+            </a>
+          </Magnetic>
+          <Magnetic>
+            <InternalLink
+              className="text-link hero-project-link"
+              href="/#projects"
+            >
+              Projects <ArrowDown size={15} />
+            </InternalLink>
+          </Magnetic>
+          <Magnetic>
+            <InternalLink className="text-link" href="/#contact">
+              Contact <ArrowUpRight size={15} />
+            </InternalLink>
+          </Magnetic>
         </div>
       </div>
       <div className="hero-description hero-enter">
-        <span className="hero-asterisk" aria-hidden="true">
-          ✳
-        </span>
+        <p className="hero-description-label">DESIGN MINDED. DETAIL DRIVEN.</p>
         <p>
           React와 TypeScript를 중심으로 웹 서비스를 개발하며,
           <br className="desktop-break" /> UI뿐 아니라 데이터 흐름과 서비스
@@ -63,7 +76,9 @@ export function HeroSection() {
       </div>
       <div className="hero-bottom" aria-hidden="true">
         <span>THOUGHTFUL INTERFACES. USEFUL EXPERIENCES.</span>
-        <ArrowDownRight size={21} />
+        <span className="scroll-cue">
+          SCROLL TO EXPLORE <ArrowDownRight size={21} />
+        </span>
       </div>
     </section>
   )

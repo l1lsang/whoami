@@ -25,8 +25,8 @@ export function Spotlight({
     frame.current = requestAnimationFrame(() => {
       element.style.setProperty('--spot-x', x * 100 + '%')
       element.style.setProperty('--spot-y', y * 100 + '%')
-      element.style.setProperty('--tilt-x', (0.5 - y) * 4 + 'deg')
-      element.style.setProperty('--tilt-y', (x - 0.5) * 4 + 'deg')
+      element.style.setProperty('--tilt-x', (0.5 - y) * 7 + 'deg')
+      element.style.setProperty('--tilt-y', (x - 0.5) * 7 + 'deg')
     })
   }
   function reset() {
