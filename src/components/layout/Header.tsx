@@ -1,7 +1,6 @@
 ﻿import { useEffect, useState } from 'react'
 import { portfolioConfig } from '../../config/portfolio'
 import { InternalLink } from '../ui/InternalLink'
-import { ScrollProgress } from '../ui/ScrollProgress'
 
 export function Header({ currentPath }: { currentPath: string }) {
   const [activeSection, setActiveSection] = useState('home')
@@ -25,14 +24,14 @@ export function Header({ currentPath }: { currentPath: string }) {
   }, [currentPath])
   return (
     <header className="site-header">
-      <ScrollProgress />
       <nav className="section-container header-inner" aria-label="주요 메뉴">
         <InternalLink
           href="/#home"
           className="brand"
           ariaLabel="장경민 포트폴리오 홈"
         >
-          장경민
+          <span className="brand-mark" aria-hidden="true">✳</span>
+          경민.
         </InternalLink>
         <ul className="header-links">
           {portfolioConfig.navigation.map((item) => (

@@ -1,172 +1,55 @@
-import { useEffect, useRef } from 'react'
+﻿import { useRef, type PointerEvent } from 'react'
 
-// A woven torus, drawn locally so the hero needs no video or 3D dependencies.
 export function HeroVisual() {
-  const sceneRef = useRef<HTMLDivElement>(null)
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const artRef = useRef<SVGSVGElement>(null)
 
-  useEffect(() => {
-    const scene = sceneRef.current
-    const canvas = canvasRef.current
-    const context = canvas?.getContext('2d')
-    if (!scene || !canvas || !context) return
+  function followPointer(event: PointerEvent<SVGSVGElement>) {
+    if (event.pointerType !== 'mouse' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const bounds = event.currentTarget.getBoundingClientRect()
+    artRef.current?.style.setProperty('--eye-x', ((event.clientX - bounds.left) / bounds.width - 0.5) * 14 + 'px')
+    artRef.current?.style.setProperty('--eye-y', ((event.clientY - bounds.top) / bounds.height - 0.5) * 10 + 'px')
+  }
 
-    const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    let frame = 0
-    let width = 0
-    let height = 0
-    let time = 0
-    let lastTime = 0
-    let inView = false
-    const pointer = { x: 0, y: 0, targetX: 0, targetY: 0 }
-    const strands = Array.from({ length: 48 }, (_, strand) =>
-      Array.from({ length: 121 }, (_, point) => {
-        const u = (point / 120) * Math.PI * 2
-        const v = (strand / 48) * Math.PI * 2 + u * 3
-        const radius = 108 + 39 * Math.cos(v)
-        return {
-          x: radius * Math.cos(u),
-          y: 39 * Math.sin(v),
-          z: radius * Math.sin(u),
-        }
-      }),
-    )
-
-    function render() {
-      if (!context) return
-      context.clearRect(0, 0, width, height)
-      const turn = time * 0.13 + pointer.x * 0.22
-      const tilt = 0.78 + Math.sin(time * 0.22) * 0.14 + pointer.y * 0.12
-      const scale = Math.min(width / 365, height / 270) * 0.9
-      const cosTurn = Math.cos(turn)
-      const sinTurn = Math.sin(turn)
-      const cosTilt = Math.cos(tilt)
-      const sinTilt = Math.sin(tilt)
-      const roll = -0.37 + Math.sin(time * 0.15) * 0.09
-      const cosRoll = Math.cos(roll)
-      const sinRoll = Math.sin(roll)
-
-      const projected = strands
-        .map((strand, index) => {
-          let depth = 0
-          const points = strand.map((point) => {
-            const x = point.x * cosTurn - point.z * sinTurn
-            const z = point.x * sinTurn + point.z * cosTurn
-            const y = point.y * cosTilt - z * sinTilt
-            const rotatedZ = point.y * sinTilt + z * cosTilt
-            const perspective = 650 / (650 - rotatedZ)
-            depth += rotatedZ
-            return {
-              x:
-                width / 2 +
-                (x * cosRoll - y * sinRoll) * scale * perspective,
-              y:
-                height / 2 +
-                (x * sinRoll + y * cosRoll) * scale * perspective,
-            }
-          })
-          return { points, depth: depth / strand.length, index }
-        })
-        .sort((a, b) => a.depth - b.depth)
-
-      projected.forEach(({ points, depth, index }) => {
-        context.beginPath()
-        points.forEach((point, i) => {
-          if (i === 0) context.moveTo(point.x, point.y)
-          else context.lineTo(point.x, point.y)
-        })
-        const light = 37 + (depth + 30) * 0.16
-        const hue = 92 + Math.sin((index / 48) * Math.PI * 2 + time * 0.18) * 30
-        context.strokeStyle = `hsla(${hue}, 30%, ${light}%, 0.64)`
-        context.lineWidth = Math.max(0.65, scale * 0.8)
-        context.stroke()
-      })
-    }
-
-    function draw(timestamp: number) {
-      const delta = lastTime ? Math.min(timestamp - lastTime, 40) : 16
-      time += delta / 1000
-      lastTime = timestamp
-      const easing = 1 - Math.exp(-delta / 180)
-      pointer.x += (pointer.targetX - pointer.x) * easing
-      pointer.y += (pointer.targetY - pointer.y) * easing
-      render()
-      frame = requestAnimationFrame(draw)
-    }
-
-    function sync() {
-      cancelAnimationFrame(frame)
-      lastTime = 0
-      const active = inView && !document.hidden && !motion.matches
-      scene!.dataset.motion = active ? 'running' : 'paused'
-      if (active) frame = requestAnimationFrame(draw)
-      else render()
-    }
-
-    function resize() {
-      const rect = canvas!.getBoundingClientRect()
-      width = rect.width
-      height = rect.height
-      const ratio = Math.min(window.devicePixelRatio, 2)
-      canvas!.width = Math.round(width * ratio)
-      canvas!.height = Math.round(height * ratio)
-      context!.setTransform(ratio, 0, 0, ratio, 0, 0)
-      render()
-    }
-
-    function move(event: PointerEvent) {
-      if (event.pointerType !== 'mouse' || motion.matches) return
-      const rect = scene!.getBoundingClientRect()
-      pointer.targetX = Math.max(
-        -1,
-        Math.min(1, ((event.clientX - rect.left) / rect.width) * 2 - 1),
-      )
-      pointer.targetY = Math.max(
-        -1,
-        Math.min(1, ((event.clientY - rect.top) / rect.height) * 2 - 1),
-      )
-    }
-    function leave() {
-      pointer.targetX = 0
-      pointer.targetY = 0
-    }
-
-    const parent = scene.parentElement!
-    const observer = new IntersectionObserver(([entry]) => {
-      inView = entry.isIntersecting
-      sync()
-    })
-    const resizer = new ResizeObserver(resize)
-    resizer.observe(canvas)
-    observer.observe(scene)
-    parent.addEventListener('pointermove', move, { passive: true })
-    parent.addEventListener('pointerleave', leave)
-    motion.addEventListener('change', sync)
-    document.addEventListener('visibilitychange', sync)
-    return () => {
-      cancelAnimationFrame(frame)
-      observer.disconnect()
-      resizer.disconnect()
-      parent.removeEventListener('pointermove', move)
-      parent.removeEventListener('pointerleave', leave)
-      motion.removeEventListener('change', sync)
-      document.removeEventListener('visibilitychange', sync)
-    }
-  }, [])
+  function resetEyes() {
+    artRef.current?.style.setProperty('--eye-x', '0px')
+    artRef.current?.style.setProperty('--eye-y', '0px')
+  }
 
   return (
-    <div ref={sceneRef} className="hero-art" aria-hidden="true">
-      <div className="art-aura art-aura-one" />
-      <div className="art-aura art-aura-two" />
-      <div className="art-orbit art-orbit-one">
-        <i />
-      </div>
-      <div className="art-orbit art-orbit-two">
-        <i />
-      </div>
-      <div className="art-cross art-cross-one">+</div>
-      <div className="art-cross art-cross-two">+</div>
-      <canvas ref={canvasRef} className="art-sculpture" />
-    </div>
+    <svg ref={artRef} viewBox="0 0 560 570" className="studio-mascot" aria-hidden="true"
+      onPointerMove={followPointer} onPointerLeave={resetEyes}>
+      <ellipse className="mascot-shadow" cx="282" cy="516" rx="161" ry="19" fill="#25231f" opacity=".12" />
+      <g className="mascot-body" stroke="#25231f" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M207 369c-7 42-20 69-51 99m187-95c-2 49 13 72 40 94" fill="none" strokeWidth="17" />
+        <path d="M172 453c-13-8-30-4-42 8l-27 25c-14 14-4 26 11 26h77c12 0 15-9 10-22z" fill="#f6f2e8" />
+        <path d="M357 457c14-7 29-3 40 9l27 21c16 13 7 26-7 26h-76c-13 0-17-10-12-21z" fill="#f6f2e8" />
+        <path d="M105 501h96m130 1h97M144 474l18 12m-7-24 18 12m197-3-15 12m26-3-15 12" fill="none" strokeWidth="3" />
+        <path d="M130 245c-43-1-65 37-48 65 8 15 24 19 41 12m286-81c33-31 59-44 70-63" fill="none" strokeWidth="16" />
+        <g className="mascot-hand" fill="#f6f2e8">
+          <path d="M461 193c-11-9-13-25-9-36l10-30c3-10 14-7 13 3l-2 18 10-42c3-11 14-7 12 3l-5 31 13-25c5-8 14-2 10 7l-12 35c18-20 30-8 17 8l-24 29c-9 8-24 8-33-1z" />
+          <path d="m472 158 16 10m-21-20 11 9" fill="none" strokeWidth="3" />
+        </g>
+        <g transform="rotate(-8 275 270)">
+          <rect x="127" y="139" width="289" height="250" rx="39" fill="#ffaacb" />
+          <path d="M152 151h236" stroke="#ffdaea" strokeWidth="6" />
+          <rect x="150" y="166" width="242" height="175" rx="23" fill="#3155ed" />
+          <g fill="#fffdf5">
+            <ellipse cx="235" cy="239" rx="26" ry="39" />
+            <ellipse cx="306" cy="239" rx="26" ry="39" />
+          </g>
+          <g className="mascot-pupils" fill="#25231f" stroke="none">
+            <ellipse cx="244" cy="246" rx="12" ry="23" />
+            <ellipse cx="315" cy="246" rx="12" ry="23" />
+          </g>
+          <path d="M252 295q24 25 47-2" fill="none" stroke="#fffdf5" strokeWidth="5" />
+          <path d="m171 363 22 0m8 0h9" fill="none" strokeWidth="5" />
+          <circle cx="365" cy="363" r="7" fill="#e9ef74" strokeWidth="3" />
+        </g>
+      </g>
+      <g className="mascot-spark" fill="#ee654a" stroke="#25231f" strokeWidth="3" strokeLinejoin="round">
+        <path d="m95 62 12 34 32-17-16 33 34 12-35 9 17 32-32-17-11 35-10-35-32 17 17-33-34-11 35-10-17-32 33 17z" />
+      </g>
+      <path d="m431 371 8 22 23 8-23 8-8 23-8-23-23-8 23-8z" fill="#3155ed" />
+    </svg>
   )
 }

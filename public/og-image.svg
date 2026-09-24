@@ -1,15 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#f7f8f4"/>
-  <path d="M80 100h1040M80 530h1040" stroke="#d6ddcf"/>
-  <circle cx="952" cy="290" r="155" fill="#e9eedd"/>
-  <ellipse cx="952" cy="290" rx="210" ry="75" fill="none" stroke="#b9cba9" transform="rotate(-35 952 290)"/>
-  <ellipse cx="952" cy="290" rx="210" ry="75" fill="none" stroke="#b9cba9" transform="rotate(35 952 290)"/>
-  <g font-family="Arial, Malgun Gothic, sans-serif">
-    <text x="80" y="65" font-size="18" fill="#3e6349">FRONTEND DEVELOPER</text>
-    <text x="80" y="266" font-size="80" font-weight="700" fill="#293128">장경민<tspan fill="#749364">.</tspan></text>
-    <text x="80" y="359" font-size="30" fill="#293128">사용자의 경험을 고민하고,</text>
-    <text x="80" y="405" font-size="30" fill="#293128">아이디어를 실제 서비스로 구현합니다.</text>
-    <text x="80" y="575" font-size="16" fill="#737d6f">React / TypeScript / React Native</text>
-    <text x="1000" y="575" font-size="14" fill="#737d6f">PORTFOLIO</text>
-  </g>
-</svg>
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#f6f2e8"/><path d="M0 574h1200v56H0z" fill="#ffaacb"/><g fill="#25231f" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="145" letter-spacing="-10"><text x="65" y="215">IDEAS</text><text x="65" y="350">TO LIFE<tspan fill="#3155ed">.</tspan></text></g><text x="73" y="458" fill="#25231f" font-family="Arial,Malgun Gothic,sans-serif" font-size="31" font-weight="700">장경민 · Frontend Developer</text><g transform="translate(842 153) rotate(9 123 136)" stroke="#25231f" stroke-width="5"><rect width="246" height="253" rx="30" fill="#ffaacb"/><rect x="20" y="24" width="206" height="173" rx="17" fill="#3155ed"/><ellipse cx="91" cy="102" rx="22" ry="34" fill="#fffdf5"/><ellipse cx="158" cy="102" rx="22" ry="34" fill="#fffdf5"/><ellipse cx="97" cy="109" rx="10" ry="18" fill="#25231f"/><ellipse cx="164" cy="109" rx="10" ry="18" fill="#25231f"/><path d="M105 154q22 25 43-2" stroke="#fffdf5" stroke-linecap="round" fill="none"/><circle cx="204" cy="224" r="8" fill="#e9ef74"/></g></svg>

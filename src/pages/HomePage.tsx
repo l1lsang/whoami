@@ -1,4 +1,4 @@
-import { AboutSection } from '../components/sections/AboutSection'
+﻿import { AboutSection } from '../components/sections/AboutSection'
 import { ContactSection } from '../components/sections/ContactSection'
 import { HeroSection } from '../components/sections/HeroSection'
 import { ProjectsSection } from '../components/sections/ProjectsSection'
@@ -9,9 +9,9 @@ export function HomePage() {
   return (
     <main id="main-content" className="portfolio-home" tabIndex={-1}>
       <HeroSection />
+      <ProjectsSection />
       <AboutSection />
       <SkillsSection />
-      <ProjectsSection />
       <ContactSection />
     </main>
   )
