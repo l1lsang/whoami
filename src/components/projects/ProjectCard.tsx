@@ -20,7 +20,7 @@ export function ProjectCard({
         </Spotlight>
         <p className="project-image-note">
           {String(index + 1).padStart(2, '0')} {project.title}{' '}
-          <span>/ 인터랙티브 서비스 미리보기</span>
+          <span>/ {project.gallery?.label ?? '프로젝트 화면'}</span>
         </p>
       </Reveal>
       <Reveal delay={100} className="project-copy">

@@ -1,0 +1,391 @@
+﻿.project-gallery {
+  overflow: hidden;
+  background: #e9eee3;
+}
+.gallery-count {
+  margin-left: auto;
+  white-space: nowrap;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+.gallery-track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 20px;
+  padding: 48px 28px 34px;
+  background: radial-gradient(ellipse at 50% 40%, #f8fbf0 0, transparent 75%);
+}
+.gallery-slide {
+  min-width: 0;
+  margin: 0;
+}
+.screenshot-button {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 0;
+  border: 5px solid #fefefa;
+  border-radius: 18px;
+  background: #f7f8f4;
+  box-shadow:
+    0 13px 24px -9px #334e3838,
+    0 0 0 1px #c5cebb;
+  cursor: zoom-in;
+  transition:
+    transform 0.5s,
+    box-shadow 0.5s;
+}
+.screenshot-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 13px;
+}
+.gallery-mobile .gallery-slide:first-child .screenshot-button {
+  transform: translateY(10px) rotate(-4deg);
+}
+.gallery-mobile .gallery-slide:nth-child(2) .screenshot-button {
+  transform: translateY(-9px);
+}
+.gallery-mobile .gallery-slide:nth-child(3) .screenshot-button {
+  transform: translateY(10px) rotate(4deg);
+}
+.gallery-slide .screenshot-button:hover,
+.gallery-slide .screenshot-button:focus-visible,
+.gallery-mobile .gallery-slide .screenshot-button:hover,
+.gallery-mobile .gallery-slide .screenshot-button:focus-visible {
+  transform: translateY(-10px);
+  box-shadow:
+    0 24px 30px -15px #334e3860,
+    0 0 0 1px #94ac80;
+  z-index: 1;
+}
+.screenshot-expand {
+  position: absolute;
+  inset: auto 9px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 4px;
+  background: #304a3be8;
+  color: #fff;
+  font-size: 10px;
+  border-radius: 7px;
+  opacity: 0;
+  transform: translateY(5px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+  pointer-events: none;
+}
+.screenshot-button:hover .screenshot-expand,
+.screenshot-button:focus-visible .screenshot-expand {
+  opacity: 1;
+  transform: translateY(0);
+}
+.gallery-slide figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 29px;
+  font-size: 10px;
+  color: #596e51;
+}
+.gallery-slide figcaption > span {
+  font: 9px var(--font-mono);
+  color: #7f9073;
+}
+.gallery-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 0 22px 21px;
+  color: #6b7e60;
+  font-size: 9px;
+  line-height: 1.7;
+}
+.gallery-hint {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.gallery-scroll-controls {
+  display: none;
+}
+.gallery-design {
+  background: #ebe9e5;
+}
+.gallery-design .preview-toolbar {
+  background: #f6f3ee;
+  border-bottom-color: #dad6cf;
+}
+.gallery-design .gallery-track {
+  display: block;
+  padding: 26px 32px 22px;
+  background: radial-gradient(ellipse at center, #f7f4ef, transparent 80%);
+}
+.gallery-design .gallery-slide {
+  max-width: 420px;
+  margin-inline: auto;
+}
+.gallery-design .screenshot-button {
+  border-width: 0;
+  border-radius: 3px;
+  box-shadow: 0 15px 25px -14px #503b353b;
+}
+.gallery-design .screenshot-button img {
+  border-radius: 3px;
+}
+.gallery-design .gallery-slide figcaption {
+  margin-top: 18px;
+}
+.gallery-design .screenshot-expand {
+  inset-inline: auto 15px;
+  padding-inline: 14px;
+}
+.gallery-icon-button {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccd6c4;
+  border-radius: 4px;
+  background: transparent;
+  color: #3e6349;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.gallery-icon-button:hover {
+  background: #e2ead9;
+}
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  padding: 20px;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: #293128;
+  overflow: auto;
+}
+.image-lightbox[open] {
+  display: grid;
+  place-items: center;
+}
+.image-lightbox::backdrop {
+  background: #172018cf;
+  backdrop-filter: blur(12px);
+}
+.lightbox-panel {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 1080px);
+  height: min(900px, calc(100dvh - 40px));
+  min-height: 250px;
+  border: 1px solid #dce4d2;
+  border-radius: 10px;
+  background: #f7f8f4;
+  overflow: hidden;
+  box-shadow: 0 30px 90px #0004;
+  animation: gallery-open 0.25s ease both;
+}
+.lightbox-header,
+.lightbox-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  gap: 16px;
+  padding: 16px 22px;
+}
+.lightbox-header {
+  border-bottom: 1px solid #d9e0d2;
+}
+.lightbox-header p {
+  color: #6b7e60;
+  font: 9px var(--font-mono);
+  letter-spacing: 0.06em;
+}
+.lightbox-header h2 {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.lightbox-stage {
+  display: grid;
+  place-items: center;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: #e4e8df;
+  scrollbar-color: #9eae92 #e4e8df;
+}
+.lightbox-stage:focus-visible {
+  outline: 2px solid #3e6349;
+  outline-offset: -3px;
+}
+.lightbox-stage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+.lightbox-stage.is-zoomed {
+  display: block;
+}
+.lightbox-stage.is-zoomed img {
+  width: auto;
+  height: auto;
+  max-width: none;
+  margin-inline: auto;
+}
+.lightbox-footer {
+  border-top: 1px solid #d9e0d2;
+}
+.lightbox-navigation,
+.lightbox-tools {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.lightbox-navigation > span {
+  font: 11px var(--font-mono);
+  color: #6b7e60;
+  white-space: nowrap;
+}
+.lightbox-tools .text-link {
+  font-size: 11px;
+}
+.detail-page .project-gallery {
+  border: 1px solid #d2dcc9;
+}
+.detail-page .gallery-mobile .gallery-track {
+  padding: 50px 60px 35px;
+  gap: 36px;
+}
+.detail-page .gallery-design .gallery-slide {
+  max-width: 540px;
+}
+@keyframes gallery-open {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  .gallery-track {
+    padding: 35px 14px 25px;
+    gap: 12px;
+  }
+  .screenshot-button {
+    border-width: 3px;
+    border-radius: 12px;
+  }
+  .screenshot-button img {
+    border-radius: 9px;
+  }
+  .gallery-slide figcaption {
+    gap: 4px;
+    font-size: 8px;
+  }
+  .gallery-hint,
+  .gallery-count {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .gallery-mobile .gallery-track,
+  .detail-page .gallery-mobile .gallery-track {
+    grid-auto-flow: column;
+    grid-auto-columns: 76%;
+    grid-template-columns: none;
+    gap: 20px;
+    padding: 30px 24px 20px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 24px;
+    scrollbar-width: thin;
+    scrollbar-color: #adbd9d #e9eee3;
+  }
+  .gallery-mobile .gallery-slide {
+    scroll-snap-align: start;
+  }
+  .gallery-mobile .gallery-slide:nth-child(n) .screenshot-button {
+    transform: none;
+  }
+  .gallery-slide figcaption {
+    margin-top: 17px;
+    font-size: 10px;
+  }
+  .gallery-count {
+    font-size: 7px;
+  }
+  .gallery-footer {
+    padding: 16px;
+    gap: 12px;
+    font-size: 9px;
+  }
+  .gallery-scroll-controls {
+    display: flex;
+    gap: 7px;
+    flex-shrink: 0;
+  }
+  .gallery-hint {
+    display: none;
+  }
+  .gallery-design .gallery-track {
+    padding: 20px 15px 10px;
+  }
+  .gallery-design .gallery-hint {
+    display: flex;
+    font-size: 8px;
+  }
+  .image-lightbox {
+    padding: 12px;
+  }
+  .lightbox-panel {
+    height: calc(100dvh - 24px);
+  }
+  .lightbox-header,
+  .lightbox-footer {
+    padding: 12px;
+    gap: 8px;
+  }
+  .lightbox-header h2 {
+    font-size: 14px;
+  }
+  .lightbox-navigation,
+  .lightbox-tools {
+    gap: 7px;
+  }
+  .lightbox-navigation > span {
+    font-size: 10px;
+  }
+  .lightbox-tools .text-link {
+    font-size: 10px;
+  }
+  .lightbox-footer .gallery-icon-button {
+    width: 34px;
+    height: 40px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-mobile .gallery-slide:nth-child(n) .screenshot-button {
+    transform: none;
+  }
+}

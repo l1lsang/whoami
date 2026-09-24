@@ -7,7 +7,7 @@ import {
   Swords,
 } from 'lucide-react'
 import type { Project } from '../../data/projects'
-import { GwichanaPreview, SpotitPreview } from './ProductPreview'
+import { ProjectGallery } from './ProjectGallery'
 
 type ProjectVisualProps = {
   project: Project
@@ -15,10 +15,10 @@ type ProjectVisualProps = {
 }
 
 export function ProjectVisual({ project, className = '' }: ProjectVisualProps) {
-  if (project.slug === 'spotit' || project.slug === 'gwichana') {
+  if (project.gallery) {
     return (
       <div className={`product-preview-container ${className}`}>
-        {project.slug === 'spotit' ? <SpotitPreview /> : <GwichanaPreview />}
+        <ProjectGallery gallery={project.gallery} title={project.title} />
       </div>
     )
   }

@@ -1,5 +1,19 @@
 export type ProjectAccent = 'unity' | 'web' | 'bot'
 
+export type ProjectScreenshot = {
+  src: string
+  alt: string
+  caption: string
+  width: number
+  height: number
+}
+
+export type ProjectGallery = {
+  kind: 'mobile' | 'design'
+  label: string
+  images: ProjectScreenshot[]
+}
+
 export type Project = {
   slug: string
   title: string
@@ -15,6 +29,7 @@ export type Project = {
   githubUrl: string
   demoUrl: string
   image: string
+  gallery?: ProjectGallery
   accent: ProjectAccent
   challenges: string[]
   solutions: string[]
@@ -160,6 +175,33 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/l1lsang/spotit',
     demoUrl: 'https://spotit-one.vercel.app/',
     image: '',
+    gallery: {
+      kind: 'mobile',
+      label: '모바일 서비스 화면',
+      images: [
+        {
+          src: '/스팟잇 (2).jpg',
+          alt: 'Spotit 모바일 지도 화면: 장소 검색, 지도 핀과 실시간 리뷰',
+          caption: '지도 · 장소 탐색',
+          width: 1072,
+          height: 1905,
+        },
+        {
+          src: '/스팟잇 (1).jpg',
+          alt: 'Spotit 모바일 그룹 화면: 관심사별 그룹 탐색, 초대코드 가입과 그룹 만들기',
+          caption: '그룹 · 취향 공유',
+          width: 1080,
+          height: 1919,
+        },
+        {
+          src: '/스팟잇 (3).jpg',
+          alt: 'Spotit 모바일 채팅 화면: 사용자 사이의 메시지와 이미지 전송',
+          caption: '채팅 · 사용자 연결',
+          width: 1080,
+          height: 1920,
+        },
+      ],
+    },
     accent: 'web',
     challenges: [
       '피드에 흩어진 기록만으로는 사용자가 어디에서 무엇을 했는지 한눈에 파악하기 어려웠습니다.',
@@ -194,6 +236,19 @@ export const projects: Project[] = [
     githubUrl: '',
     demoUrl: '',
     image: '',
+    gallery: {
+      kind: 'design',
+      label: 'Figma UI 디자인',
+      images: [
+        {
+          src: '/귀차나.png',
+          alt: '귀차나 Figma 시안: AI가 정리한 받은편지함과 공모전 신청 준비 상세 화면',
+          caption: '받은편지함 → 신청 준비',
+          width: 924,
+          height: 960,
+        },
+      ],
+    },
     accent: 'web',
     challenges: [
       '정보를 직접 분류하고 입력해야 하는 일정 관리 방식은 기록 습관이 없는 사용자에게 지속적인 부담이 됩니다.',
