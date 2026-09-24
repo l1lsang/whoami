@@ -31,7 +31,7 @@ export function Header({ currentPath }: { currentPath: string }) {
           ariaLabel="장경민 포트폴리오 홈"
         >
           <span className="brand-mark" aria-hidden="true">✳</span>
-          경민.
+          경민
         </InternalLink>
         <ul className="header-links">
           {portfolioConfig.navigation.map((item) => (
