@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0B0D12"/>
+  <path d="M0 1h1200M0 629h1200" stroke="#252A35"/>
+  <path d="M72 0v630M1128 0v630" stroke="#252A35"/>
+  <rect x="72" y="72" width="1056" height="486" fill="#10141C" stroke="#252A35"/>
+  <rect x="112" y="112" width="48" height="48" fill="#151922" stroke="#45D6A8"/>
+  <path d="m126 126 9 10-9 10M140 146h7" fill="none" stroke="#F4F6FA" stroke-width="3"/>
+  <text x="112" y="252" fill="#9DA7B8" font-family="Arial, sans-serif" font-size="24" letter-spacing="4">UNITY &amp; WEB DEVELOPER</text>
+  <text x="112" y="348" fill="#F4F6FA" font-family="Arial, sans-serif" font-size="74" font-weight="700">장경민</text>
+  <text x="112" y="420" fill="#F4F6FA" font-family="Arial, sans-serif" font-size="36">사용자가 직접 경험하는 서비스를 만듭니다.</text>
+  <rect x="112" y="488" width="150" height="4" fill="#8B7CFF"/>
+  <rect x="262" y="488" width="150" height="4" fill="#45D6A8"/>
+</svg>
