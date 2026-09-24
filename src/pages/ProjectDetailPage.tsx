@@ -74,11 +74,8 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
           <div className="lg:col-span-7 lg:col-start-2">
             <section
               aria-labelledby="overview-title"
-              className="grid gap-4 sm:grid-cols-[80px_1fr]"
+              className="grid gap-4"
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-web">
-                01 / Overview
-              </p>
               <div>
                 <h2
                   id="overview-title"
@@ -94,11 +91,8 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
 
             <section
               aria-labelledby="background-title"
-              className="mt-16 grid gap-4 border-t border-ink/20 pt-16 sm:grid-cols-[80px_1fr]"
+              className="mt-16 grid gap-4 border-t border-ink/20 pt-16"
             >
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-web">
-                02 / Background
-              </p>
               <div>
                 <h2
                   id="background-title"
@@ -116,10 +110,7 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
               aria-labelledby="features-title"
               className="mt-16 border-t border-ink/20 pt-16"
             >
-              <div className="grid gap-4 sm:grid-cols-[80px_1fr]">
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-web">
-                  03 / Features
-                </p>
+              <div className="grid gap-4">
                 <h2
                   id="features-title"
                   className="font-display text-4xl font-medium tracking-[-0.04em] text-ink"
@@ -146,10 +137,7 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
               aria-labelledby="retrospective-title"
               className="mt-16 border-t border-ink/20 pt-16"
             >
-              <div className="grid gap-4 sm:grid-cols-[80px_1fr]">
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-web">
-                  04 / Review
-                </p>
+              <div className="grid gap-4">
                 <h2
                   id="retrospective-title"
                   className="font-display text-4xl font-medium tracking-[-0.04em] text-ink"

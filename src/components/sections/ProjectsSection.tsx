@@ -11,28 +11,21 @@ export function ProjectsSection() {
       aria-labelledby="projects-title"
       className="section-container projects-section section-rule"
     >
-      <Reveal className="section-grid section-heading">
-        <p className="eyebrow">03 / SELECTED WORK</p>
-        <div className="projects-heading">
-          <h2 id="projects-title">
-            Selected Projects<span className="accent-dot">.</span>
-          </h2>
-          <span>IDEAS INTO REALITY ↗</span>
-        </div>
+      <Reveal className="section-heading">
+        <h2 id="projects-title">
+          Selected Projects<span className="accent-dot">.</span>
+        </h2>
       </Reveal>
       {projects.slice(0, 2).map((project, index) => (
         <ProjectCard key={project.slug} project={project} index={index} />
       ))}
       <div className="more-projects">
         <Reveal>
-          <h3>
-            More projects <span>03</span>
-          </h3>
+          <h3>More projects</h3>
         </Reveal>
         {projects.slice(2).map((project, index) => (
           <Reveal key={project.slug} delay={index * 60}>
             <article className="project-row">
-              <span className="project-number">0{index + 3}</span>
               <div className="project-row-title">
                 <InternalLink href={'/projects/' + project.slug}>
                   <h4>{project.title}</h4>

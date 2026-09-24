@@ -1,4 +1,4 @@
-﻿import { ArrowDown, ArrowDownRight, ArrowUpRight, Download } from 'lucide-react'
+﻿import { ArrowDown, ArrowUpRight, Download } from 'lucide-react'
 import { portfolioConfig } from '../../config/portfolio'
 import { InternalLink } from '../ui/InternalLink'
 import { Magnetic } from '../ui/Magnetic'
@@ -13,9 +13,6 @@ export function HeroSection() {
     >
       <HeroVisual />
       <div className="hero-main">
-        <p className="eyebrow hero-enter">
-          <span className="status-dot" /> FRONTEND DEVELOPER
-        </p>
         <h1 id="hero-title" className="hero-name hero-enter">
           <span className="hero-name-text">장경민</span>
           <span className="name-period">.</span>
@@ -58,7 +55,6 @@ export function HeroSection() {
         </div>
       </div>
       <div className="hero-description hero-enter">
-        <p className="hero-description-label">DESIGN MINDED. DETAIL DRIVEN.</p>
         <p>
           React와 TypeScript를 중심으로 웹 서비스를 개발하며,
           <br className="desktop-break" /> UI뿐 아니라 데이터 흐름과 서비스
@@ -71,14 +67,8 @@ export function HeroSection() {
           href={portfolioConfig.resumePath}
           download={portfolioConfig.resumeFilename}
         >
-          <Download size={14} /> 이력서 다운로드 <span>PDF</span>
+          <Download size={14} /> 이력서 다운로드
         </a>
-      </div>
-      <div className="hero-bottom" aria-hidden="true">
-        <span>THOUGHTFUL INTERFACES. USEFUL EXPERIENCES.</span>
-        <span className="scroll-cue">
-          SCROLL TO EXPLORE <ArrowDownRight size={21} />
-        </span>
       </div>
     </section>
   )

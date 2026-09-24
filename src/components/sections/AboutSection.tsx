@@ -7,8 +7,7 @@ export function AboutSection() {
       aria-labelledby="about-title"
       className="section-container about-section section-rule"
     >
-      <Reveal className="section-grid">
-        <p className="eyebrow">01 / ABOUT</p>
+      <Reveal>
         <div>
           <h2 id="about-title" className="about-statement">
             좋은 프론트엔드는 단순히 화면을 구현하는 것이 아니라

@@ -166,15 +166,7 @@ export function HeroVisual() {
       </div>
       <div className="art-cross art-cross-one">+</div>
       <div className="art-cross art-cross-two">+</div>
-      <div className="art-caption">
-        <span className="art-live-dot" /> IDEAS INTO EXPERIENCES
-      </div>
       <canvas ref={canvasRef} className="art-sculpture" />
-      <div className="art-baseline">
-        <span>DESIGN</span>
-        <i />
-        <span>DEVELOPMENT</span>
-      </div>
     </div>
   )
 }

@@ -32,7 +32,7 @@ export function Header({ currentPath }: { currentPath: string }) {
           className="brand"
           ariaLabel="장경민 포트폴리오 홈"
         >
-          장경민<span> / Frontend Developer</span>
+          장경민
         </InternalLink>
         <ul className="header-links">
           {portfolioConfig.navigation.map((item) => (

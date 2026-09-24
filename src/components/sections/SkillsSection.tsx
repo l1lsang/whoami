@@ -9,14 +9,12 @@ export function SkillsSection() {
       aria-labelledby="skills-title"
       className="section-container skills-section section-rule"
     >
-      <Reveal className="section-grid section-heading">
-        <p className="eyebrow">02 / CAPABILITIES</p>
+      <Reveal className="section-heading">
         <h2 id="skills-title">
           Tools for building<span className="accent-dot">.</span>
         </h2>
       </Reveal>
-      <Reveal className="primary-skills section-grid">
-        <p className="eyebrow">PRIMARY / FRONTEND</p>
+      <Reveal className="primary-skills">
         <div className="primary-skill-list">
           <span>React</span>
           <i>/</i>

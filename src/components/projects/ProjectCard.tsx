@@ -18,18 +18,12 @@ export function ProjectCard({
         <Spotlight>
           <ProjectVisual project={project} />
         </Spotlight>
-        <p className="project-image-note">
-          {String(index + 1).padStart(2, '0')} {project.title}{' '}
-          <span>/ {project.gallery?.label ?? '프로젝트 화면'}</span>
-        </p>
       </Reveal>
       <Reveal delay={100} className="project-copy">
-        <p className="eyebrow">0{index + 1} / FEATURED PROJECT</p>
         <h3>{project.title}</h3>
         <p className="project-subtitle">{project.subtitle}</p>
         <p className="project-summary">{project.summary}</p>
         <div className="project-role">
-          <span className="meta-label">ROLE</span>
           <p>
             {index === 0 ? (
               <>

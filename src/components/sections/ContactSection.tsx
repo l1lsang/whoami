@@ -25,8 +25,7 @@ export function ContactSection() {
       aria-labelledby="contact-title"
       className="section-container contact-section section-rule"
     >
-      <Reveal className="section-grid section-heading">
-        <p className="eyebrow">04 / CONTACT</p>
+      <Reveal className="section-heading">
         <h2 id="contact-title">
           Let’s build
           <br className="mobile-break" /> something useful
@@ -81,8 +80,7 @@ export function ContactSection() {
               href={portfolioConfig.resumePath}
               download={portfolioConfig.resumeFilename}
             >
-              <Download size={14} /> 이력서 다운로드{' '}
-              <span className="meta-label">PDF</span>
+              <Download size={14} /> 이력서 다운로드
             </a>
             <span className="copy-feedback" role="status">
               {copyState === 'copied'

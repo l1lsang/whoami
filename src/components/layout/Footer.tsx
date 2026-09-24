@@ -5,17 +5,14 @@ import { InternalLink } from '../ui/InternalLink'
 export function Footer() {
   return (
     <footer className="section-container site-footer">
-      <p>{portfolioConfig.name} · Frontend Developer</p>
-      <div>
-        <span>PORTFOLIO / {new Date().getFullYear()}</span>
-        <InternalLink
-          href="/#home"
-          className="back-to-top"
-          ariaLabel="맨 위로 이동"
-        >
-          <ArrowUp size={17} />
-        </InternalLink>
-      </div>
+      <p>{portfolioConfig.name}</p>
+      <InternalLink
+        href="/#home"
+        className="back-to-top"
+        ariaLabel="맨 위로 이동"
+      >
+        <ArrowUp size={17} />
+      </InternalLink>
     </footer>
   )
 }

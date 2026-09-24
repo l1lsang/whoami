@@ -185,21 +185,6 @@ export function ProjectGallery({
 
   return (
     <div className={`project-gallery gallery-${gallery.kind}`}>
-      <div className="preview-toolbar">
-        <div className="window-dots" aria-hidden="true">
-          <i />
-          <i />
-          <i />
-        </div>
-        <span>
-          {title} /{' '}
-          {gallery.kind === 'mobile' ? 'mobile experience' : 'figma design'}
-        </span>
-        <span className="gallery-count">
-          {String(gallery.images.length).padStart(2, '0')}{' '}
-          {gallery.images.length === 1 ? 'IMAGE' : 'SCREENS'}
-        </span>
-      </div>
       <div
         className="gallery-track"
         ref={trackRef}
@@ -226,20 +211,12 @@ export function ProjectGallery({
                 <Expand size={14} /> 크게 보기
               </span>
             </button>
-            <figcaption>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              {screenshot.caption}
-            </figcaption>
+            <figcaption>{screenshot.caption}</figcaption>
           </figure>
         ))}
       </div>
-      <div className="gallery-footer">
-        <span>
-          {gallery.kind === 'mobile'
-            ? '장소에서 시작해, 사람으로 이어지는 경험.'
-            : '일상의 정보를 다음 행동으로.'}
-        </span>
-        {gallery.images.length > 1 ? (
+      {gallery.images.length > 1 ? (
+        <div className="gallery-footer">
           <div className="gallery-scroll-controls">
             <button
               type="button"
@@ -258,11 +235,8 @@ export function ProjectGallery({
               <ArrowRight size={15} aria-hidden="true" />
             </button>
           </div>
-        ) : null}
-        <span className="gallery-hint">
-          <Expand size={12} aria-hidden="true" /> 이미지 클릭으로 자세히 보기
-        </span>
-      </div>
+        </div>
+      ) : null}
       {activeImage !== null ? (
         <ImageLightbox
           images={gallery.images}

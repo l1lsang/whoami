@@ -5,13 +5,13 @@
 .portfolio-home .hero {
   min-height: 760px;
   padding-top: 190px;
-  padding-bottom: 42px;
+  padding-bottom: 80px;
   column-gap: 80px;
 }
 .portfolio-home .hero-name {
   font-size: clamp(68px, 6.4vw, 92px);
   font-weight: 600;
-  margin: 32px 0 26px;
+  margin: 0 0 26px;
 }
 .hero-name-text {
   background: linear-gradient(
@@ -51,13 +51,7 @@
   padding-top: 275px;
   padding-bottom: 0;
 }
-.portfolio-home .hero-description-label {
-  margin-bottom: 14px;
-  font: 9px var(--font-mono);
-  letter-spacing: 0.12em;
-  color: #62805c;
-}
-.portfolio-home .hero-description > p:not(.hero-description-label) {
+.portfolio-home .hero-description > p {
   font-size: 13px;
   line-height: 1.95;
 }
@@ -103,16 +97,6 @@
 }
 .hero-links .hero-project-link:hover svg {
   transform: translateY(3px);
-}
-.portfolio-home .hero-bottom {
-  margin-top: 50px;
-  padding-top: 22px;
-  border-top: 1px solid #d6ddcf;
-}
-.scroll-cue {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
 }
 
 /* Rotating thread sculpture with separate, compositor-friendly light fields. */
@@ -205,86 +189,8 @@
   right: 2%;
   bottom: 17%;
 }
-.art-caption,
-.art-baseline {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: #76866a;
-  font: 8px var(--font-mono);
-  letter-spacing: 0.13em;
-  left: 0;
-  width: 100%;
-}
-.art-caption {
-  top: 0;
-}
-.art-live-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #7b9364;
-}
-.art-baseline {
-  bottom: -3px;
-  gap: 14px;
-  font-size: 7px;
-}
-.art-baseline i {
-  width: 74px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #9fb28a, transparent);
-}
 .hero-art[data-motion='paused'] * {
   animation-play-state: paused;
-}
-
-/* A quiet editorial band balances the more expressive hero. */
-.craft-ribbon {
-  width: 100%;
-  overflow: hidden;
-  margin: 8px 0 68px;
-  padding-block: 22px;
-  border-block: 1px solid #dce3d5;
-  background: linear-gradient(90deg, #edf1e7, #f4f6ee 45%, #edf1e7);
-  mask-image: linear-gradient(
-    90deg,
-    transparent,
-    black 8%,
-    black 92%,
-    transparent
-  );
-}
-.craft-ribbon-track {
-  display: flex;
-  width: max-content;
-  animation: ribbon-travel 35s linear infinite;
-  animation-play-state: paused;
-}
-.craft-ribbon[data-in-view='true'] .craft-ribbon-track {
-  animation-play-state: running;
-}
-.craft-ribbon-group {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  gap: 55px;
-  padding-right: 55px;
-}
-.craft-ribbon-group > span {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  color: #758765;
-  white-space: nowrap;
-}
-.craft-ribbon-group > i {
-  font-size: 23px;
-  font-style: normal;
-  line-height: 1;
-  color: #9aad83;
 }
 
 .portfolio-home .section-heading h2 {
@@ -299,21 +205,6 @@
 }
 .portfolio-home .section-heading.is-visible h2 {
   animation: heading-focus 1s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-.portfolio-home .section-heading .eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 15px;
-  height: 1px;
-  background: #91a17e;
-  vertical-align: middle;
-  margin-right: 10px;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.9s ease 0.3s;
-}
-.portfolio-home .section-heading.is-visible .eyebrow::before {
-  transform: scaleX(1);
 }
 .portfolio-home .primary-skills {
   border: 1px solid #d4dfca;
@@ -487,15 +378,10 @@
   animation-play-state: running;
 }
 .portfolio-home .contact-section .section-heading {
-  grid-template-columns: 208px minmax(0, 1fr);
   margin-bottom: 45px;
 }
 .portfolio-home .contact-section .section-heading h2 {
   font-size: clamp(28px, 3vw, 42px);
-}
-.portfolio-home .contact-section .eyebrow,
-.portfolio-home .contact-section .meta-label {
-  color: #b9c6a6;
 }
 .portfolio-home .contact-section .accent-dot {
   color: #c3dc97;
@@ -570,11 +456,6 @@
     opacity: 1;
     transform: none;
     filter: blur(0);
-  }
-}
-@keyframes ribbon-travel {
-  to {
-    transform: translateX(-50%);
   }
 }
 @keyframes heading-focus {
@@ -670,27 +551,21 @@
     height: 300px;
     top: 135px;
   }
-  .portfolio-home .contact-section .section-heading {
-    grid-template-columns: 160px minmax(0, 1fr);
-  }
 }
 @media (max-width: 760px) {
   .portfolio-home .hero {
-    padding: 144px 0 30px;
+    padding: 144px 0 48px;
     min-height: auto;
   }
   .portfolio-home .hero-name {
     font-size: 62px;
-    margin: 30px 0 26px;
+    margin: 0 0 26px;
   }
   .portfolio-home .hero-statement {
     font-size: 23px;
   }
   .portfolio-home .hero-description {
     padding-top: 29px;
-  }
-  .portfolio-home .hero-description-label {
-    display: none;
   }
   .portfolio-home .hero-links {
     gap: 25px;
@@ -701,17 +576,8 @@
     gap: 14px;
     min-height: 42px;
   }
-  .portfolio-home .hero-bottom {
-    margin-top: 29px;
-    padding-top: 18px;
-    font-size: 6px;
-  }
-  .scroll-cue {
-    font-size: 0;
-    gap: 0;
-  }
   .hero-art {
-    top: 128px;
+    top: 104px;
     right: -19px;
     width: 175px;
     height: 146px;
@@ -719,35 +585,17 @@
   .art-aura {
     filter: blur(20px);
   }
-  .art-caption,
-  .art-baseline,
   .art-cross {
     display: none;
   }
   .art-orbit {
     border-color: #a3b68730;
   }
-  .craft-ribbon {
-    padding-block: 18px;
-    margin: 0 0 40px;
-  }
-  .craft-ribbon-group {
-    gap: 28px;
-    padding-right: 28px;
-  }
-  .craft-ribbon-group > span {
-    font-size: 10px;
-    letter-spacing: 0.14em;
-  }
-  .craft-ribbon-group > i {
-    font-size: 18px;
-  }
   .portfolio-home .contact-section {
     padding: 28px 24px 30px;
     margin-bottom: 32px;
   }
   .portfolio-home .contact-section .section-heading {
-    grid-template-columns: 1fr;
     margin-bottom: 32px;
   }
   .portfolio-home .contact-section .section-heading h2 {
@@ -783,7 +631,7 @@
   .hero-art {
     width: 144px;
     height: 130px;
-    top: 140px;
+    top: 108px;
     right: -16px;
   }
   .portfolio-home .hero-links {
@@ -814,7 +662,6 @@
   .hero-art,
   .art-aura,
   .art-orbit > i,
-  .craft-ribbon-track,
   .portfolio-home .section-heading.is-visible h2,
   .portfolio-home .project-gallery::after,
   .portfolio-home .gallery-mobile .gallery-slide,
@@ -825,37 +672,12 @@
     background: none;
     -webkit-text-fill-color: currentColor;
   }
-  .craft-ribbon-track {
-    width: 100%;
-    justify-content: center;
-  }
-  .craft-ribbon-group {
-    flex: 1 1 0;
-    min-width: 0;
-    gap: 20px;
-    padding: 0 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .craft-ribbon {
-    mask-image: none;
-  }
-  .craft-ribbon-group:nth-child(2) {
-    display: none;
-  }
-  .craft-ribbon-group > span {
-    font-size: 9px;
-  }
-  .craft-ribbon-group > i {
-    display: none;
-  }
   .portfolio-home .project-gallery::after {
     display: none;
   }
 }
 @media print {
-  .hero-art,
-  .craft-ribbon {
+  .hero-art {
     display: none;
   }
   .portfolio-home {
