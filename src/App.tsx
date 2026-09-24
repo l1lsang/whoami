@@ -8,7 +8,9 @@ import { HomePage } from './pages/HomePage'
 import { NotFoundPage } from './pages/NotFoundPage'
 
 const ProjectDetailPage = lazy(() =>
-  import('./pages/ProjectDetailPage').then((module) => ({ default: module.ProjectDetailPage })),
+  import('./pages/ProjectDetailPage').then((module) => ({
+    default: module.ProjectDetailPage,
+  })),
 )
 
 function getCurrentPath() {
@@ -17,15 +19,36 @@ function getCurrentPath() {
 
 function setMetadata(title: string, description: string) {
   document.title = title
-  document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute('content', description)
-  document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.setAttribute('content', title)
-  document.querySelector<HTMLMetaElement>('meta[property="og:description"]')?.setAttribute('content', description)
+  document
+    .querySelector<HTMLMetaElement>('meta[name="description"]')
+    ?.setAttribute('content', description)
+  document
+    .querySelector<HTMLMetaElement>('meta[property="og:title"]')
+    ?.setAttribute('content', title)
+  document
+    .querySelector<HTMLMetaElement>('meta[property="og:description"]')
+    ?.setAttribute('content', description)
+  document
+    .querySelector<HTMLMetaElement>('meta[name="twitter:title"]')
+    ?.setAttribute('content', title)
+  document
+    .querySelector<HTMLMetaElement>('meta[name="twitter:description"]')
+    ?.setAttribute('content', description)
+}
+
+function getProjectFromPath(path: string) {
+  const match = path.match(/^\/projects\/([^/]+)$/)
+  if (!match) return undefined
+  try {
+    return getProjectBySlug(decodeURIComponent(match[1]))
+  } catch {
+    return undefined
+  }
 }
 
 function App() {
   const [currentPath, setCurrentPath] = useState(getCurrentPath)
-  const projectMatch = currentPath.match(/^\/projects\/([^/]+)$/)
-  const project = projectMatch ? getProjectBySlug(decodeURIComponent(projectMatch[1])) : undefined
+  const project = getProjectFromPath(currentPath)
 
   useEffect(() => {
     function handleNavigation() {
@@ -51,7 +74,10 @@ function App() {
       return
     }
 
-    setMetadata(`페이지를 찾을 수 없습니다 | ${portfolioConfig.name}`, portfolioConfig.seo.description)
+    setMetadata(
+      `페이지를 찾을 수 없습니다 | ${portfolioConfig.name}`,
+      portfolioConfig.seo.description,
+    )
   }, [currentPath, project])
 
   let page = <NotFoundPage />
@@ -60,7 +86,14 @@ function App() {
     page = <HomePage />
   } else if (project) {
     page = (
-      <Suspense fallback={<main className="min-h-screen bg-canvas pt-16" aria-label="프로젝트 불러오는 중" />}>
+      <Suspense
+        fallback={
+          <main
+            className="min-h-screen bg-canvas pt-16"
+            aria-label="프로젝트 불러오는 중"
+          />
+        }
+      >
         <ProjectDetailPage project={project} />
       </Suspense>
     )
@@ -68,6 +101,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-canvas text-ink">
+      <a className="skip-link" href="#main-content">
+        본문으로 바로가기
+      </a>
       <Header currentPath={currentPath} />
       {page}
       <Footer />

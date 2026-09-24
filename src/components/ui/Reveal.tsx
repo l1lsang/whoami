@@ -1,38 +1,30 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+﻿import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react'
 
-type RevealProps = {
-  children: ReactNode
-  className?: string
-}
+type RevealProps = { children: ReactNode; className?: string; delay?: number }
 
-export function Reveal({ children, className = '' }: RevealProps) {
+export function Reveal({ children, className = '', delay = 0 }: RevealProps) {
   const elementRef = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
-
   useEffect(() => {
     const element = elementRef.current
-
-    if (!element || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setIsVisible(true)
-      return
-    }
-
+    if (!element) return
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.disconnect()
+          element.classList.add('is-visible')
+          observer.unobserve(element)
         }
       },
-      { threshold: 0.12 },
+      { threshold: 0, rootMargin: '0px 0px -35px 0px' },
     )
-
     observer.observe(element)
     return () => observer.disconnect()
   }, [])
-
   return (
-    <div ref={elementRef} className={`reveal-section ${isVisible ? 'is-visible' : ''} ${className}`}>
+    <div
+      ref={elementRef}
+      style={{ '--reveal-delay': delay + 'ms' } as CSSProperties}
+      className={'reveal-section ' + className}
+    >
       {children}
     </div>
   )

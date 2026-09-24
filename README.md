@@ -1,59 +1,34 @@
-# 장경민 | Unity & Web Developer Portfolio
+# 장경민 | Frontend Developer
 
-Unity 게임 개발과 웹 서비스 개발을 “사용자 경험을 구현하는 개발”이라는 하나의 흐름으로 보여주는 반응형 포트폴리오입니다.
+이력서의 소개와 Spotit·귀차나 프로젝트를 담은 React + TypeScript 포트폴리오입니다.
+Portfolio 폴더의 데스크톱(1440px)·모바일(390px) SVG를 기준으로 구성했습니다.
 
-## 실행
+## 실행 및 확인
 
-```bash
-npm install
-npm run dev
-```
+- npm install
+- npm run dev
+- npm run build
+- npm run lint
 
-프로덕션 빌드와 미리보기:
+## 콘텐츠 수정
 
-```bash
-npm run build
-npm run preview
-```
+- 기본 정보, 이메일, GitHub, 이력서: src/config/portfolio.ts
+- 대표 프로젝트 2개와 추가 프로젝트 3개: src/data/projects.ts
+- 기술 목록: src/data/skills.ts
+- 스타일, 반응형 구성, 애니메이션: src/index.css
+- 인터랙티브 서비스 미리보기: src/components/projects/ProductPreview.tsx
+- 다운로드 PDF: public/resume-jang-gyeongmin.pdf (루트의 장경민 이력서.pdf와 동일)
 
-코드 검사:
+Spotit의 지도와 귀차나의 행동 카드는 서비스의 주요 흐름을 설명하는 예시 UI입니다.
+지도 핀을 선택하거나 행동 카드를 완료할 수 있으며 외부 서비스 데이터를 변경하지 않습니다.
+귀차나의 저장소·배포 링크는 확인된 주소가 없어 비워 두었습니다.
+기존 프로젝트의 상세 URL도 유지됩니다.
 
-```bash
-npm run lint
-```
+## 모션과 접근성
 
-## 콘텐츠 수정 위치
+배경 파티클, 타이틀 등장, 스크롤 리빌, 진행 표시, 카드 기울기·스포트라이트,
+지도 경로 애니메이션, 플로팅 카드 및 호버 효과를 사용합니다.
+prefers-reduced-motion 설정을 따르며, 파티클은 화면 밖이나 숨겨진 탭에서 정지합니다.
+키보드 포커스, 본문 바로가기, 이메일 복사 상태 알림을 제공합니다.
 
-- 이름, 이메일, GitHub, 이력서, 내비게이션: `src/config/portfolio.ts`
-- 4개 프로젝트 내용과 링크, 이미지 경로: `src/data/projects.ts`
-- 기술 역량: `src/data/skills.ts`
-- 개발 과정: `src/data/process.ts`
-
-GitHub의 `USERNAME`과 임시 이메일을 실제 정보로 교체하세요. 이력서는 `public/resume.pdf`에 추가한 뒤 `resumePath`를 `/resume.pdf`로 변경하면 다운로드 버튼이 표시됩니다.
-
-## 프로젝트 이미지
-
-실제 이미지가 없으면 프로젝트별 CSS/UI 플레이스홀더가 표시됩니다. 이미지를 `public/projects/`에 추가한 뒤 `src/data/projects.ts`의 `image` 값을 `/projects/파일명.webp`처럼 설정하면 자동으로 교체됩니다.
-
-## 주요 구조
-
-```text
-src/
-├─ components/
-│  ├─ layout/
-│  ├─ projects/
-│  ├─ sections/
-│  └─ ui/
-├─ config/portfolio.ts
-├─ data/
-│  ├─ process.ts
-│  ├─ projects.ts
-│  └─ skills.ts
-├─ lib/navigation.ts
-└─ pages/
-   ├─ HomePage.tsx
-   ├─ NotFoundPage.tsx
-   └─ ProjectDetailPage.tsx
-```
-
-Vercel에서는 `vercel.json`의 SPA rewrite를 통해 `/projects/:slug` 직접 접근을 지원합니다.
+Vercel의 vercel.json SPA rewrite로 /projects/:slug 직접 접근을 지원합니다.
