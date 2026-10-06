@@ -1,26 +1,44 @@
-﻿export const skillGroups = [
+export const primarySkills = ['React', 'Spring Boot', 'PostgreSQL']
+
+export const skillGroups = [
+  {
+    id: 'frontend',
+    title: 'Frontend',
+    items: ['React', 'TypeScript', 'JavaScript', 'HTML', 'CSS'],
+  },
+  {
+    id: 'backend',
+    title: 'Backend',
+    items: ['Spring Boot', 'Java', 'Node.js', 'REST API'],
+  },
+  {
+    id: 'database',
+    title: 'Database & Realtime',
+    items: ['PostgreSQL', 'Firebase', 'Firestore'],
+  },
+  {
+    id: 'cloud',
+    title: 'Cloud & DevOps',
+    items: ['AWS EC2', 'Docker', 'Vercel', 'Linux', 'Git', 'GitHub'],
+  },
   {
     id: 'mobile',
     title: 'Mobile',
     items: ['React Native', 'Expo'],
-    description: '웹에서 모바일까지 이어지는 사용자 경험',
   },
   {
-    id: 'styling',
-    title: 'Styling',
-    items: ['HTML', 'CSS', 'Tailwind CSS'],
-    description: '다양한 화면에 자연스럽게 대응하는 인터페이스',
+    id: 'languages',
+    title: 'Languages',
+    items: ['Java', 'TypeScript', 'JavaScript', 'C', 'C++', 'Python', 'C#'],
   },
   {
-    id: 'backend',
-    title: 'Backend / BaaS',
-    items: ['Firebase', 'Node.js'],
-    description: '인증, 데이터, 서비스 흐름을 연결하는 개발',
+    id: 'game',
+    title: 'Game & Interactive',
+    items: ['Unity', 'Unreal Engine'],
   },
   {
     id: 'tools',
-    title: 'Tools',
-    items: ['Git', 'GitHub', 'Figma', 'Vite', 'Vercel'],
-    description: '설계에서 협업, 빌드와 배포까지',
+    title: 'Design & Tools',
+    items: ['Figma', 'VS Code', 'IntelliJ IDEA'],
   },
 ]

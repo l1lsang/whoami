@@ -1,6 +1,5 @@
 import {
   Bot,
-  Building2,
   CircleDollarSign,
   Gamepad2,
   Shield,
@@ -8,6 +7,7 @@ import {
 } from 'lucide-react'
 import type { Project } from '../../data/projects'
 import { ProjectGallery } from './ProjectGallery'
+import { HansungArchitecture } from './HansungArchitecture'
 
 type ProjectVisualProps = {
   project: Project
@@ -78,42 +78,7 @@ export function ProjectVisual({ project, className = '' }: ProjectVisualProps) {
   }
 
   if (project.slug === 'hansung-space-reservation') {
-    return (
-      <div
-        className={`relative overflow-hidden border border-ink/20 bg-panel p-4 ${className}`}
-        role="img"
-        aria-label="한성대학교 공간 배치도 화면 플레이스홀더"
-      >
-        <div className="flex h-10 items-center justify-between border border-b-0 border-ink/20 bg-surface px-3 font-mono text-[9px] text-muted">
-          <span className="flex items-center gap-2 text-ink">
-            <Building2 size={12} className="text-web" /> SANGSANG BASE
-          </span>
-          <span>14:00 — 15:00</span>
-        </div>
-        <div className="grid h-[calc(100%-2.5rem)] grid-cols-[0.8fr_1.2fr] gap-2 border border-ink/20 p-3">
-          <div className="grid grid-rows-2 gap-2">
-            <div className="border border-web bg-web/10 p-2 font-mono text-[8px] text-web">
-              A-01 · OPEN
-            </div>
-            <div className="border border-ink/20 bg-surface p-2 font-mono text-[8px] text-muted">
-              A-02
-            </div>
-          </div>
-          <div className="grid grid-cols-2 grid-rows-3 gap-2">
-            {['B-01', 'B-02', 'B-03', 'B-04', 'B-05', 'B-06'].map(
-              (room, index) => (
-                <div
-                  key={room}
-                  className={`grid place-items-center border font-mono text-[8px] ${index === 2 || index === 5 ? 'border-web bg-web/10 text-web' : 'border-ink/20 bg-panel text-muted'}`}
-                >
-                  {room}
-                </div>
-              ),
-            )}
-          </div>
-        </div>
-      </div>
-    )
+    return <HansungArchitecture className={className} />
   }
 
   return (

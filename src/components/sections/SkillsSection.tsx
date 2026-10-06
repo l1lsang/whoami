@@ -1,4 +1,4 @@
-﻿import { skillGroups } from '../../data/skills'
+import { primarySkills, skillGroups } from '../../data/skills'
 import { Reveal } from '../ui/Reveal'
 
 export function SkillsSection() {
@@ -10,7 +10,7 @@ export function SkillsSection() {
           <span className="toolbox-flower" aria-hidden="true">✳</span>
         </Reveal>
         <Reveal className="primary-skill-list">
-          <span>React</span><span>TypeScript</span><span>JavaScript</span>
+          {primarySkills.map((skill) => <span key={skill}>{skill}</span>)}
         </Reveal>
         <div className="skill-rows">
           {skillGroups.map((group, index) => (

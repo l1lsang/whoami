@@ -13,13 +13,13 @@ export function ProjectsSection() {
           <ArrowUpRight className="section-arrow" size={112} strokeWidth={1.5} aria-hidden="true" />
         </Reveal>
         <div className="featured-projects">
-          {projects.slice(0, 2).map((project, index) => (
+          {projects.slice(0, 3).map((project, index) => (
             <ProjectCard key={project.slug} project={project} index={index} />
           ))}
         </div>
         <div className="more-projects">
           <Reveal><h3>그리고, 이런 경험들도</h3></Reveal>
-          {projects.slice(2).map((project, index) => (
+          {projects.slice(3).map((project, index) => (
             <Reveal key={project.slug} delay={index * 60}>
               <article className="project-row">
                 <div className="project-row-title">

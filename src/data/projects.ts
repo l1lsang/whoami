@@ -30,6 +30,7 @@ export type Project = {
   demoUrl: string
   image: string
   gallery?: ProjectGallery
+  featured?: boolean
   accent: ProjectAccent
   challenges: string[]
   solutions: string[]
@@ -68,44 +69,6 @@ const previousProjects: Project[] = [
     solutions: [],
   },
   {
-    slug: 'hansung-space-reservation',
-    title: '한성대학교 공간 예약 시스템',
-    subtitle: '공간과 시간을 한눈에 확인하는 예약 서비스',
-    category: 'Web Service',
-    summary:
-      '한성대학교 학생들이 교내 공간의 위치와 예약 가능 시간을 확인하고 예약할 수 있는 웹 서비스입니다.',
-    description:
-      '한성대학교 상상베이스 공간의 배치도를 기반으로 예약 가능한 공간을 시각적으로 확인하고, 원하는 시간을 선택해 예약할 수 있도록 설계했습니다. 복잡한 공간 정보를 빠르게 이해하고 중복 예약 없이 이용하도록 하는 것이 핵심입니다.',
-    background:
-      '텍스트 목록만으로는 이해하기 어려운 교내 공간 정보를 배치도와 예약 가능 시간으로 시각화해 탐색 부담을 줄이고자 했습니다.',
-    features: [
-      '공간 배치도 기반 인터페이스',
-      '예약 가능한 공간 강조',
-      '공간별 예약 가능 시간 확인',
-      '최대 3시간 예약 제한',
-      '중복 예약 검증',
-      'Firebase Authentication',
-      'Firestore 예약 데이터 관리',
-      '반응형 웹',
-      'Arduino 또는 ESP32 센서 연동 확장 계획',
-    ],
-    techStack: [
-      'React',
-      'TypeScript',
-      'Firebase Authentication',
-      'Firestore',
-      'Vercel',
-    ],
-    role: '서비스 기획, UX/UI 설계, 예약 로직 구현, 데이터 구조 설계 및 배포',
-    status: 'In Progress',
-    githubUrl: 'https://github.com/l1lsang/hsp',
-    demoUrl: '',
-    image: '',
-    accent: 'web',
-    challenges: [],
-    solutions: [],
-  },
-  {
     slug: 'discord-economy-bot',
     title: '디스코드 경제 게임봇',
     subtitle: '서버 안에서 이어지는 가상 경제 게임',
@@ -127,8 +90,7 @@ const previousProjects: Project[] = [
       '관리자용 경제 설정',
       '데이터 저장 및 사용자별 기록 관리',
     ],
-    // 실제 구현 스택이 다르다면 아래 배열만 수정하세요.
-    techStack: ['Python', 'discord.py'],
+    techStack: ['Node.js', 'Discord.js', 'Firebase'],
     role: '게임 시스템 기획, 봇 명령어 개발, 가상 경제 로직 설계 및 데이터 관리',
     status: 'In Progress',
     githubUrl: 'https://github.com/l1lsang/ganade',
@@ -141,6 +103,58 @@ const previousProjects: Project[] = [
 ]
 
 export const projects: Project[] = [
+  {
+    slug: 'hansung-space-reservation',
+    title: '한성대학교 공간 예약 시스템',
+    subtitle: 'Hansung Space · 대학 공간 예약 플랫폼',
+    category: 'Full-Stack · Cloud',
+    featured: true,
+    summary:
+      '교내 공간 탐색부터 예약 관리까지. React 화면과 Spring Boot API, PostgreSQL 데이터베이스를 연결하고 클라우드에 배포하는 풀스택 프로젝트입니다.',
+    description:
+      '대학의 강의실과 스터디 공간을 조회하고, 날짜와 시간을 선택해 예약할 수 있는 공간 예약 플랫폼입니다. React·TypeScript 프론트엔드와 Spring Boot REST API를 분리하고 PostgreSQL로 사용자·공간·예약 데이터를 관리합니다. Docker 개발 환경부터 Vercel·AWS EC2 배포까지 서비스 전체를 직접 구축하며 현재 가장 집중해서 개발하고 있습니다.',
+    background:
+      '교내 공간을 편리하게 찾고 예약하려면 화면뿐 아니라 사용자 인증, 공간과 예약 데이터 관리, 서버와 배포 환경이 함께 동작해야 합니다. 단순한 예약 화면에서 출발해 각 계층의 책임을 나누고 실제로 사용할 수 있는 서비스를 만들고자 했습니다.',
+    features: [
+      '공간 목록 및 상세 조회',
+      '예약 가능한 공간 검색',
+      '날짜·시간 기반 공간 예약',
+      '사용자 인증 및 사용자별 예약 관리',
+      '공간별 예약 상태 및 관리자 공간 관리',
+      'Spring Boot REST API 기반 프론트엔드·백엔드 분리',
+      'PostgreSQL 기반 사용자·공간·예약 데이터 관리',
+      'Docker 기반 백엔드·데이터베이스 개발 환경',
+      'Vercel 프론트엔드 및 AWS EC2 백엔드 배포',
+      '도메인·HTTPS·API 통신·CORS 설정',
+    ],
+    techStack: [
+      'React',
+      'TypeScript',
+      'Spring Boot',
+      'Java',
+      'PostgreSQL',
+      'Docker',
+      'AWS EC2',
+      'Vercel',
+      'REST API',
+    ],
+    role: '서비스 기획 · UX/예약 흐름 설계 · React 프론트엔드 개발 · Spring Boot API 개발 · PostgreSQL 설계 · Docker 환경 구성 · AWS EC2/Vercel 배포',
+    status: 'Active Development',
+    githubUrl: 'https://github.com/l1lsang/hansung-place-system',
+    demoUrl: '',
+    image: '',
+    accent: 'web',
+    challenges: [
+      '초기 프론트엔드 중심 구조에서 인증, 공간 관리, 예약 처리를 확장하려면 화면과 서버의 역할을 명확히 나눌 필요가 있었습니다.',
+      '사용자, 공간, 예약 시간과 상태 사이의 관계를 일관되게 관리할 수 있는 데이터 구조가 필요했습니다.',
+      '로컬 환경에서 동작하는 서비스를 실제 사용자가 접근할 수 있도록 배포하고 환경 차이와 API 통신 문제를 해결해야 했습니다.',
+    ],
+    solutions: [
+      'Spring Boot REST API 서버를 독립적으로 구축하고 React 프론트엔드와 연결해 화면, 비즈니스 로직, 데이터 계층의 책임을 분리했습니다.',
+      'NoSQL 기반 프로토타입에서 PostgreSQL 기반 구조로 발전시키며 사용자·공간·예약 데이터의 관계를 정의하고 관리하도록 설계했습니다.',
+      'Docker로 백엔드와 PostgreSQL 개발 환경을 구성하고 프론트엔드는 Vercel, 백엔드는 AWS EC2에 배포했습니다. 도메인, HTTPS, CORS 설정을 통해 서비스 간 통신을 연결했습니다.',
+    ],
+  },
   {
     slug: 'spotit',
     title: 'Spotit',
@@ -257,13 +271,7 @@ export const projects: Project[] = [
       '받은 정보를 그대로 Inbox에 넣고 AI 분석을 통해 행동 카드로 연결하는 흐름을 설계했습니다. 분석 결과에 따라 일정·할 일·보관 UI를 제공하고, 챗봇 인터페이스로 작업을 수정할 수 있도록 구성했습니다.',
     ],
   },
-  ...[
-    'hansung-space-reservation',
-    'dream-defenders',
-    'discord-economy-bot',
-  ].flatMap((slug) =>
-    previousProjects.filter((project) => project.slug === slug),
-  ),
+  ...previousProjects,
 ]
 
 export function getProjectBySlug(slug: string) {

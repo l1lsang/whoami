@@ -14,8 +14,8 @@ export function HeroSection() {
             TO LIFE<span className="hero-period">.</span>
           </h1>
           <p className="hero-intro hero-enter">
-            아이디어를 살아 있는 경험으로.<br />
-            프론트엔드 개발자 <strong>장경민</strong>입니다.
+            아이디어를 실제로 쓰이는 서비스로.<br />
+            풀스택 개발자 <strong>장경민</strong>입니다.
           </p>
           <div className="hero-links hero-enter">
             <Magnetic>
