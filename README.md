@@ -1,38 +1,57 @@
-# 장경민 | Full-Stack Developer
+# 장경민 | Full-Stack Developer — Reassemble
 
-한성대학교 공간 예약 시스템을 대표 프로젝트로 소개하는 풀스택 개발자 포트폴리오입니다.
-React + TypeScript로 구현했으며, 소개와 기술 스택은 [GitHub 프로필 README](https://github.com/l1lsang/l1lsang/blob/main/README.md)를 기준으로 구성했습니다.
-Portfolio 폴더의 데스크톱(1440px)·모바일(390px) SVG를 기준으로 구성했습니다.
+13개의 SVG 조각이 스크롤에 따라 **자화상 → 격자 → 프로젝트별 모양 → 궤도 → "Hi"** 로 다시 조립되는 포트폴리오입니다.
+콘텐츠는 `../Who am I` 포트폴리오를 기준으로 옮겨 왔습니다.
 
-## 실행 및 확인
+## 실행
 
-- npm install
-- npm run dev
-- npm run build
-- npm run lint
+```bash
+npm install
+npm run dev     # 개발 서버
+npm run build   # 타입 검사 + 프로덕션 빌드 (dist/)
+npm run lint
+```
+
+## 도형 시스템
+
+| 파일 | 역할 |
+| --- | --- |
+| `src/types/shapes.ts` | 조각 이름(`PIECE_IDS`)과 포메이션 이름(`FORMATION_IDS`). 배열 순서가 곧 쌓이는 순서입니다. |
+| `src/components/shapes/pieces.tsx` | 13개 조각의 SVG 모양. 모두 (0, 0)을 중심으로 그립니다. |
+| `src/components/shapes/formations.ts` | 600×600 스테이지 위에서 각 조각이 놓이는 자리(x, y, 회전, 배율, 색). |
+| `src/components/shapes/ShapeStage.tsx` | 조각을 그리고, 마우스로 끌었다 놓으면 제자리로 튕겨 돌아가게 합니다. |
+| `src/components/shapes/StickyStage.tsx` | 데스크톱: 오른쪽에 고정된 스테이지 + 캡션 + "다시 조립" 버튼. |
+| `src/components/shapes/InlineStage.tsx` | 모바일: 섹션마다 들어가는 스테이지. 탭하면 흩어졌다 다시 모입니다. |
+| `src/hooks/useActiveStep.ts` | 화면 가운데를 지나는 `[data-step]` 섹션을 찾아 포메이션을 바꿉니다. |
+
+조각의 이동은 CSS `transition`으로 처리합니다. `transform`을 항상 `translate → rotate → scale` 순서로 만들기 때문에
+브라우저가 두 포메이션 사이를 알아서 보간합니다 (`src/utils/stage.ts`의 `toTransform`).
+
+### 포메이션 추가하기
+
+1. `FORMATION_IDS`에 이름을 추가합니다.
+2. `formations.ts`에 13개 조각의 자리를 모두 적습니다. 숨기고 싶은 조각은 `o: 0`.
+3. 해당 섹션 요소에 `data-step="새이름"`을 붙입니다.
 
 ## 콘텐츠 수정
 
-- 기본 정보, 이메일, GitHub, 이력서: src/config/portfolio.ts
-- 메인 프로젝트 1개, 주요 프로젝트 2개와 추가 프로젝트 2개: src/data/projects.ts
-- 기술 목록: src/data/skills.ts
-- 스타일, 반응형 구성, 애니메이션: src/index.css
-- 실제 프로젝트 이미지 갤러리: src/components/projects/ProjectGallery.tsx
-- 다운로드 PDF: public/resume-jang-gyeongmin.pdf (루트의 장경민 이력서.pdf와 동일)
+- 이름·이메일·GitHub·이력서: `src/data/profile.ts`
+- 프로젝트: `src/data/projects.ts` (프로젝트 `id`가 곧 포메이션 이름)
+- 소개 편지: `src/data/about.ts`
+- 기술 스택: `src/data/skills.ts`
+- 스타일: `src/styles/global.css`(색 토큰·스테이지), `src/styles/site.css`(레이아웃·섹션)
 
-한성대학교 공간 예약 시스템은 최상단의 확장 카드와 React → Spring Boot → PostgreSQL 구조도로 소개합니다.
-Spotit은 public의 모바일 스크린샷 3장을 지도·그룹·채팅 순서로 보여주고,
-귀차나는 public/귀차나.png의 Figma 시안 전체를 표시합니다.
-이미지를 누르면 확대 뷰어가 열립니다. 좌우 화살표로 이미지 이동, 확대 버튼으로 원본 크기 확인,
-Escape로 닫기가 가능하며 모바일에서는 갤러리를 가로로 넘길 수 있습니다.
-귀차나의 저장소·배포 링크는 확인된 주소가 없어 비워 두었습니다.
-기존 프로젝트의 상세 URL도 유지됩니다.
+## 디자인 원칙
 
-## 모션과 접근성
+- 바탕은 돌색 하나, 글자는 잉크 하나. 화면의 다른 색은 모두 도형과 프로젝트 스크린샷에서 옵니다.
+- 서체는 Pretendard 하나, 크기는 다섯 단계(15 / 18 / 22 / 40 / 104px)와 기술 섹션의 거대한 단어뿐입니다.
+- 구분은 선 대신 면으로 합니다(바탕보다 한 단계 어두운 면). 모서리는 모두 직각입니다.
+- 라벨·번호·모노스페이스·그림자·그라디언트는 쓰지 않습니다.
 
-배경 파티클, 타이틀 등장, 스크롤 리빌, 진행 표시, 카드 기울기·스포트라이트,
-실제 화면 갤러리의 카드 배치와 호버 효과를 사용합니다.
-prefers-reduced-motion 설정을 따르며, 파티클은 화면 밖이나 숨겨진 탭에서 정지합니다.
-키보드 포커스, 본문 바로가기, 이메일 복사 상태 알림을 제공합니다.
+## 디테일
 
-Vercel의 vercel.json SPA rewrite로 /projects/:slug 직접 접근을 지원합니다.
+- 오른쪽 스테이지는 진한 잉크 면이고, 그 안에서는 잉크색 조각이 밝게 뒤집힙니다(`.stage-panel`의 색 변수).
+- 연락처 섹션에 도착하면 페이지는 어두워지고 스테이지는 반대로 밝아집니다.
+- 프로젝트 목록에 마우스를 올리면 스테이지가 그 프로젝트의 모양으로 미리 바뀝니다.
+- `prefers-reduced-motion`을 켜면 조각이 날아다니지 않고 색과 투명도만 바뀝니다.
+- 터치에서는 스크롤을 막지 않도록 드래그 대신 탭으로 재조립합니다.

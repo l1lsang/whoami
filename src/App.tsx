@@ -1,113 +1,45 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+// App.tsx
+import { useEffect, useState } from 'react'
 import { Footer } from './components/layout/Footer'
 import { Header } from './components/layout/Header'
-import { portfolioConfig } from './config/portfolio'
-import { getProjectBySlug } from './data/projects'
-import { NAVIGATION_EVENT } from './lib/navigation'
-import { HomePage } from './pages/HomePage'
-import { NotFoundPage } from './pages/NotFoundPage'
-
-const ProjectDetailPage = lazy(() =>
-  import('./pages/ProjectDetailPage').then((module) => ({
-    default: module.ProjectDetailPage,
-  })),
-)
-
-function getCurrentPath() {
-  return window.location.pathname.replace(/\/+$/, '') || '/'
-}
-
-function setMetadata(title: string, description: string) {
-  document.title = title
-  document
-    .querySelector<HTMLMetaElement>('meta[name="description"]')
-    ?.setAttribute('content', description)
-  document
-    .querySelector<HTMLMetaElement>('meta[property="og:title"]')
-    ?.setAttribute('content', title)
-  document
-    .querySelector<HTMLMetaElement>('meta[property="og:description"]')
-    ?.setAttribute('content', description)
-  document
-    .querySelector<HTMLMetaElement>('meta[name="twitter:title"]')
-    ?.setAttribute('content', title)
-  document
-    .querySelector<HTMLMetaElement>('meta[name="twitter:description"]')
-    ?.setAttribute('content', description)
-}
-
-function getProjectFromPath(path: string) {
-  const match = path.match(/^\/projects\/([^/]+)$/)
-  if (!match) return undefined
-  try {
-    return getProjectBySlug(decodeURIComponent(match[1]))
-  } catch {
-    return undefined
-  }
-}
+import { StickyStage } from './components/shapes/StickyStage'
+import { useActiveStep } from './hooks/useActiveStep'
+import { useMediaQuery } from './hooks/useMediaQuery'
+import type { ProjectId } from './data/projects'
+import About from './sections/About'
+import Contact from './sections/Contact'
+import Hero from './sections/Hero'
+import Projects from './sections/Projects'
+import Skills from './sections/Skills'
 
 function App() {
-  const [currentPath, setCurrentPath] = useState(getCurrentPath)
-  const project = getProjectFromPath(currentPath)
+  const active = useActiveStep('hero')
+  const isDesktop = useMediaQuery('(min-width: 960px)')
+  const [preview, setPreview] = useState<ProjectId | null>(null)
 
+  // 연락처에 도착하면 페이지는 어두워지고 스테이지는 밝아집니다.
   useEffect(() => {
-    function handleNavigation() {
-      setCurrentPath(getCurrentPath())
-    }
-
-    window.addEventListener('popstate', handleNavigation)
-    window.addEventListener(NAVIGATION_EVENT, handleNavigation)
-    return () => {
-      window.removeEventListener('popstate', handleNavigation)
-      window.removeEventListener(NAVIGATION_EVENT, handleNavigation)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (project) {
-      setMetadata(`${project.title} | ${portfolioConfig.name}`, project.summary)
-      return
-    }
-
-    if (currentPath === '/') {
-      setMetadata(portfolioConfig.seo.title, portfolioConfig.seo.description)
-      return
-    }
-
-    setMetadata(
-      `페이지를 찾을 수 없습니다 | ${portfolioConfig.name}`,
-      portfolioConfig.seo.description,
-    )
-  }, [currentPath, project])
-
-  let page = <NotFoundPage />
-
-  if (currentPath === '/') {
-    page = <HomePage />
-  } else if (project) {
-    page = (
-      <Suspense
-        fallback={
-          <main
-            className="min-h-screen bg-canvas pt-16"
-            aria-label="프로젝트 불러오는 중"
-          />
-        }
-      >
-        <ProjectDetailPage project={project} />
-      </Suspense>
-    )
-  }
+    document.documentElement.dataset.tone = active === 'contact' ? 'dark' : 'light'
+  }, [active])
 
   return (
-    <div className="min-h-screen bg-canvas text-ink">
-      <a className="skip-link" href="#main-content">
-        본문으로 바로가기
+    <>
+      <a className="skip-link" href="#main">
+        본문 바로가기
       </a>
-      <Header currentPath={currentPath} />
-      {page}
+      <Header active={active} />
+      <div className="layout">
+        <main id="main" tabIndex={-1}>
+          <Hero />
+          <About />
+          <Projects onPreview={setPreview} />
+          <Skills />
+          <Contact />
+        </main>
+        {isDesktop && <StickyStage formation={preview ?? active} />}
+      </div>
       <Footer />
-    </div>
+    </>
   )
 }
 

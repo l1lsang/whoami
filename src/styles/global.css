@@ -1,0 +1,110 @@
+/* ───────── 토큰 ───────── */
+:root {
+  /* 바탕과 글자: 돌색 하나, 잉크 하나 */
+  --stone: #efeeea;
+  --stone-2: #e2e1db;
+  --ink: #131417;
+  --ink-2: #222327;
+
+  --bg: var(--stone);
+  --surface: var(--stone-2);
+  --fg: var(--ink);
+  --muted: #55565b;
+  --field: #ffffff;
+
+  /* 스테이지 패널: 페이지와 반대 톤의 넓은 면 */
+  --stage-bg: var(--ink);
+  --stage-fg: var(--stone);
+  --stage-sand: #2c2d32;
+
+  /* 도형 색. 화면의 다른 색은 모두 여기서 옵니다 */
+  --tone-ink: var(--ink);
+  --tone-paper: var(--stone);
+  --tone-sand: #d6d4cd;
+  --tone-blue: #2f4de0;
+  --tone-red: #e5392f;
+  --tone-yellow: #f5bf35;
+  --tone-pink: #f3a5c2;
+  --tone-green: #1f9a6a;
+
+  --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+
+  /* 다섯 단계 글자 크기 (+ 기술 섹션의 거대한 단어) */
+  --step-small: 15px;
+  --step-body: 18px;
+  --step-lead: clamp(19px, 1.1rem + 0.35vw, 22px);
+  --step-head: clamp(28px, 1.2rem + 1.6vw, 40px);
+  --step-display: clamp(48px, 6.4vw, 104px);
+
+  --margin: clamp(16px, 2.6vw, 40px);
+  --header-h: 72px;
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.5, 1);
+
+  color-scheme: light;
+}
+
+/* 연락처에 도착하면 페이지는 어두워지고, 스테이지는 밝아집니다 */
+:root[data-tone='dark'] {
+  --bg: var(--ink);
+  --surface: var(--ink-2);
+  --fg: var(--stone);
+  --muted: #a4a5aa;
+  --field: var(--stone);
+
+  --stage-bg: var(--stone);
+  --stage-fg: var(--ink);
+  --stage-sand: #d6d4cd;
+
+  --tone-ink: var(--stone);
+  --tone-paper: var(--ink);
+  --tone-sand: #2c2d32;
+
+  color-scheme: dark;
+}
+
+/* 스테이지 안에서는 잉크·종이 색을 패널 기준으로 뒤집습니다 */
+.stage-panel,
+.stage-scope {
+  --tone-ink: var(--stage-fg);
+  --tone-paper: var(--stage-bg);
+  --tone-sand: var(--stage-sand);
+}
+
+/* ───────── 도형 스테이지 ───────── */
+.shape-stage {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.piece {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  transition:
+    transform 0.95s var(--ease-spring) calc(var(--i) * 28ms),
+    color 0.4s ease calc(var(--i) * 28ms),
+    opacity 0.6s ease;
+}
+
+.shape-stage.is-draggable .piece {
+  cursor: grab;
+}
+
+/* 잡고 있는 조각은 손을 따라오도록 위치 전환을 끕니다 */
+.piece.is-held {
+  cursor: grabbing;
+  transition:
+    color 0.4s ease,
+    opacity 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .piece {
+    transition:
+      color 0.3s ease,
+      opacity 0.3s ease;
+  }
+}
