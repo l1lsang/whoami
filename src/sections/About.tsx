@@ -35,7 +35,7 @@ function About() {
         ))}
         <p className="signoff">
           <strong>{profile.name}</strong>
-          <span>풀스택 개발자</span>
+          <span>프론트엔드 개발자</span>
         </p>
       </div>
     </section>

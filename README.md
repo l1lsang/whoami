@@ -1,4 +1,4 @@
-# 장경민 | Full-Stack Developer — Reassemble
+# 장경민 | Frontend Developer — Reassemble
 
 13개의 SVG 조각이 스크롤에 따라 **자화상 → 격자 → 프로젝트별 모양 → 궤도 → "Hi"** 로 다시 조립되는 포트폴리오입니다.
 콘텐츠는 `../Who am I` 포트폴리오를 기준으로 옮겨 왔습니다.

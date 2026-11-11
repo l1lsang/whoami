@@ -2,7 +2,7 @@ import type { FormationId } from '../types/shapes'
 
 export const profile = {
   name: '장경민',
-  role: 'Full-Stack Developer',
+  role: 'Frontend Developer',
   email: 'jkm0831123@gmail.com',
   githubUrl: 'https://github.com/l1lsang',
   resumePath: '/resume-jang-gyeongmin.pdf',
