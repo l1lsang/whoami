@@ -9,7 +9,7 @@ function Hero() {
 
       <div className="hero-copy">
         <h1 id="hero-title">
-          풀스택 개발자
+          프론트엔드 개발자
           <br />
           {profile.name}
         </h1>

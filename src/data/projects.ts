@@ -78,7 +78,7 @@ export const projects: Project[] = [
   },
   {
     id: 'spotit',
-    title: 'Spotit',
+    title: '피노리',
     subtitle: '방문한 장소를 지도 위에 기록하는 SNS',
     kind: '웹과 모바일',
     status: 'MVP 배포',
