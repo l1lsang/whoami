@@ -6,7 +6,7 @@ export const profile = {
   email: 'jkm0831123@gmail.com',
   githubUrl: 'https://github.com/l1lsang',
   resumePath: '/resume-jang-gyeongmin.pdf',
-  resumeFilename: '장경민_이력서.pdf',
+  resumeFilename: '장경민_이력서_2026.pdf',
 }
 
 export type NavItem = {
